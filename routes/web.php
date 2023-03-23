@@ -21,12 +21,17 @@ use App\Http\Controllers\Admin\PermissionController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
-});
+    // return view('auth.login');
+    if (auth()->user()->name == "admin") {
+        return redirect(route('admin.index'));
+    } else {
+        return redirect(route('film'));
+    }
+})->middleware(['auth', 'verified']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'role:admin'])->name('dashboard');
 
 Route::get('/admin', function () {
     return view('admin.index');
@@ -45,8 +50,8 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::resource('/users', UserController::class);
 });
 
-Route::get('film', Index::class)->name('film');
+Route::get('film', Index::class)->middleware(['auth', 'verified'])->name('film');
 
-Route::get('seat', Seat::class)->name('seat');
+Route::get('seat', Seat::class)->middleware(['auth', 'verified'])->name('seat');
 
 require __DIR__ . '/auth.php';

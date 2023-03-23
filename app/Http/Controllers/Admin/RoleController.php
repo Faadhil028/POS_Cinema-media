@@ -20,7 +20,8 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate(['name' => ['required','min:3']]);
+        dd($request);
+        $validated = $request->validate(['name' => ['required', 'min:3']]);
         Role::create($validated);
 
         return to_route('admin.roles.index');
