@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\Kasir\Seat;
+use App\Http\Livewire\Kasir\Index;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,11 +38,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth','role:admin'])->name('admin.')->prefix('admin')->group(function(){
-    Route::get('/',[IndexController::class, 'index'])->name('index');
+Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function () {
+    Route::get('/', [IndexController::class, 'index'])->name('index');
     Route::resource('/roles', RoleController::class);
     Route::resource('/permissions', PermissionController::class);
     Route::resource('/users', UserController::class);
 });
 
-require __DIR__.'/auth.php';
+Route::get('film', Index::class)->name('film');
+
+Route::get('seat', Seat::class)->name('seat');
+
+require __DIR__ . '/auth.php';
