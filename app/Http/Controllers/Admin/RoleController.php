@@ -10,7 +10,7 @@ class RoleController extends Controller
 {
     public function index()
     {
-        $roles = Role::whereNotIn('name', ['admin'])->get();
+        $roles = Role::all();
         return view('admin.roles.index', compact('roles'));
     }
     public function create()
@@ -37,5 +37,11 @@ class RoleController extends Controller
         $role->update($validated);
 
         return to_route('admin.roles.index');
+    }
+
+    public function destroy(Role $role)
+    {
+        $role->delete();
+        return back()->with('message', 'Role deleted.');
     }
 }
