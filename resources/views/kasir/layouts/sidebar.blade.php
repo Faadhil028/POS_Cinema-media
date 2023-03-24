@@ -11,7 +11,7 @@
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link link-dark">
+            <a href="{{ route('admin.index') }}" class="nav-link link-dark">
                 Dashboard
             </a>
         </li>
