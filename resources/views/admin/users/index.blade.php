@@ -27,6 +27,9 @@
                                     Email
                                 </th>
                                 <th scope="col" class="px-6 py-3">
+                                    Email Verified At
+                                </th>
+                                <th scope="col" class="px-6 py-3">
                                     Created at
                                 </th>
                                 <th scope="col" class="px-6 py-3">
@@ -56,9 +59,18 @@
                                         {{ $user->updated_at }}
                                     </th>
                                     <td class="px-6 py-4">
-                                        <a href="#" class="font-medium text-sky-500 hover:underline">Edit</a>
-                                        /
-                                        <a href="#" class="font-medium text-sky-500 hover:underline">Delete</a>
+                                        <div class="flex">
+                                            <a href="{{route('admin.users.edit', $user->id)}}" class="font-medium text-sky-500 hover:underline px-1">Edit </a>
+                                            /
+                                            <!-- <a href="#" class="font-medium text-sky-500 hover:underline">Delete</a> -->
+                                            <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}" onsubmit="return confirm('Are you sure?');" class="px-1 font-medium text-sky-500 hover:underline">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button type="submit">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
