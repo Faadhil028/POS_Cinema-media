@@ -29,6 +29,7 @@ class Kasir extends Component
 
     public function store()
     {
-        dd($this->seats, $this->total);
+        // dd($this->seats, $this->total);
+        return redirect(route('deskripsi'));
     }
 }

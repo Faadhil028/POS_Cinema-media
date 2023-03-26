@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Kasir\DeskripsiOrder;
 use App\Http\Livewire\Kasir\Seat;
 use App\Http\Livewire\Kasir\Index;
 use Illuminate\Support\Facades\Route;
@@ -48,5 +49,7 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
 Route::get('film', Index::class)->name('film');
 
 Route::get('seat', Seat::class)->name('seat');
+
+Route::get('deskripsi', DeskripsiOrder::class)->name('deskripsi');
 
 require __DIR__ . '/auth.php';

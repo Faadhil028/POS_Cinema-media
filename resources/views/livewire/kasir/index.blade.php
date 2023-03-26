@@ -1,5 +1,5 @@
 <div>
-    <div class="bg-white p-3" style="border-radius: 20px">
+    <div class="bg-grey p-3" style="border-radius: 20px">
         <div class="container m-auto">
             <button class="btn btn-dark" style="border-radius: 10px">Action</button>
             <button class="btn btn-dark" style="border-radius: 10px">Komedi</button>
@@ -15,7 +15,7 @@
                                 style="border-radius: 20px">
                             {{-- <img src="" alt=""> --}}
                             <div class="image-caption">
-                                <button wire:click.prefetch='pickSeat'>13 : 05</button>
+                                <button wire:click.prefecth='pickSeat'>13 : 05</button>
                                 <button wire:click.prefetch='pickSeat'>14:25</button>
                             </div>
                         </div>
