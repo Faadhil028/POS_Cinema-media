@@ -11,9 +11,13 @@ use function PHPSTORM_META\map;
 
 class RoleController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $roles = Role::all();
+        if ($request->has('search')) {
+            $roles = Role::where('name', 'LIKE', '%' . $request->search . '%')->get();
+        } else {
+            $roles = Role::all();
+        }
         return view('admin.roles.index', compact('roles'));
     }
     public function create()

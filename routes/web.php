@@ -22,13 +22,12 @@ use App\Http\Controllers\transactions;
 */
 
 Route::get('/', function () {
-    // return view('auth.login');
     if (auth()->user()->name == "admin") {
         return redirect(route('admin.index'));
     } else {
         return redirect(route('film'));
     }
-})->middleware(['auth', 'verified']);
+})->middleware(['auth', 'verified'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -54,7 +53,7 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
 });
 
 // Transaksi
-Route::get('transaksi', [transactions::class, 'index'])->name('transaksi.index');
+Route::get('admin/transaction', [transactions::class, 'index'])->name('admin.transaction.index');
 
 Route::get('film', Index::class)->middleware(['auth', 'verified'])->name('film');
 
