@@ -1,4 +1,5 @@
 <x-admin-layout>
+<div class="py-12 w-full">
     <div class="max-w-full mx-full sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg inl">
