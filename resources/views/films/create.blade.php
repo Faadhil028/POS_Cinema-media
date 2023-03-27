@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,14 +7,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Add New Film</title>
 </head>
-<body>
+<body> --}}
+<x-admin-layout>
     <div class="container pt-4 bg-white">
         <div class="row">
             <div class="col-md-8 col-xl-6">
                 <h1>Add New Film</h1>
                 <hr>
 
-                <form action="{{ route('films.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.films.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">
@@ -104,6 +105,6 @@
             </div>
         </div>
     </div>
-
-</body>
-</html>
+</x-admin-layout>
+{{-- </body>
+</html> --}}

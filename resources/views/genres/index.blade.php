@@ -1,20 +1,19 @@
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-    <title>Data Film</title>
+    <title>Genre List</title>
 </head>
-<body> --}}
-<x-admin-layout>
+<body>
     <div class="container mt-3">
         <div class="row">
             <div class="col-12">
                 <div class="py-4 d-flex justify-content-between align-items-center">
-                    <h2>Film List</h2>
-                    <a href="{{ route('admin.films.create') }}" class="btn btn-primary">
+                    <h2>Genre List</h2>
+                    <a href="{{ route('genres.create') }}" class="btn btn-primary">
                     Add New</a>
                 </div>
 
@@ -28,35 +27,24 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Title</th>
-                            <th>Duration in Minutes</th>
-                            <th>Genre</th>
-                            <th>Description</th>
-                            <th>Tumbnail</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
+                            <th>Name</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($films as $film)
+                        @forelse ($genres as $genre)
                             <tr>
                                 <th>{{ $loop->iteration }}</th>
-                                <td>{{ $film->title }}</td>
-                                <td>{{ $film->duration }}</td>
-                                <td>{{ $film->genre }}</td>  {{-- Problematic dengan pengambilan data genre --}}
-                                <td>{{ $film->description }}</td>
-                                <td>{{ $film->tumbnail }}</td>
-                                <td>{{ $film->start_date }}</td>
-                                <td>{{ $film->end_date }}</td>
-                                <td>{{ $film->status }}</td>
+                                <td>{{ $genre->name }}</td>
+                                <td>@if ($genre->is_active == 1) Active
+                                    @else Not Active
+                                    @endif</td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="{{ route('admin.films.edit', ['film'=> $film->id]) }}"
+                                        <a href="{{ route('genres.edit', ['genre'=> $genre->id]) }}"
                                             class="btn btn-primary">Edit</a>
-                                        <form method="POST" action="{{ route('admin.films.destroy',
-                                            ['film' => $film->id]) }}"
+                                        <form method="POST" action="{{ route('genres.destroy', ['genre' => $genre->id]) }}"
                                             onsubmit="return confirm('Are you sure?');">
 
                                             @method('DELETE')
@@ -67,13 +55,12 @@
                                 </td>
                             </tr>
                         @empty
-                            <td colspan="10" class="text-center">Nothing to show</td>
+                            <td colspan="6" class="text-center">Nothing to show</td>
                         @endforelse
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-</x-admin-layout>
-{{-- </body>
-</html> --}}
+</body>
+</html>
