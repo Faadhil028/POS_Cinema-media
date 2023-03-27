@@ -45,9 +45,10 @@
                                 <th>{{ $loop->iteration }}</th>
                                 <td>{{ $film->title }}</td>
                                 <td>{{ $film->duration }}</td>
-                                <td>{{ $film->genre }}</td>  {{-- Problematic dengan pengambilan data genre --}}
+                                <td>{{ $film->genre }}</td>
                                 <td>{{ $film->description }}</td>
-                                <td>{{ $film->tumbnail }}</td>
+                                {{-- Problem: tidak muncul gambar setelah di update --}}
+                                <td><img src="{{ asset('storage/uploads/' . $film->tumbnail) }}" alt="Tumbnail Missing" class="h-16 w-auto"></td>
                                 <td>{{ $film->start_date }}</td>
                                 <td>{{ $film->end_date }}</td>
                                 <td>{{ $film->status }}</td>

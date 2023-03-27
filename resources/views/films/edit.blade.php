@@ -16,7 +16,7 @@
                 <h1>Edit Film</h1>
                 <hr>
 
-                <form action="{{ route('films.update', ['film' => $film->id]) }}" method="POST">
+                <form action="{{ route('admin.films.update', ['film' => $film->id]) }}" method="POST">
                 @method('PUT')
                 @csrf
                 <div class="mb-3">

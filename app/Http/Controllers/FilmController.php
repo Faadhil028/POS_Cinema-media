@@ -60,10 +60,10 @@ class FilmController extends Controller
             array_push($array_data,$value);
         }
         //Attach data to table
-        $film = Film::with('genres')->first();
+        $film = Film::with('genres')->orderBy('id','desc')->first();
         $film->genres()->attach($array_data);
 
-        return redirect()->route('films.index')
+        return redirect()->route('admin.films.index')
         ->with('message', "\"{$validateData['title']}\" added succesfully!");
     }
 
@@ -86,6 +86,13 @@ class FilmController extends Controller
             'status'        => 'required'
         ]);
 
+        //update pivot table
+        $array_data = [];
+
+        foreach ($validateData['genre'] as $key => $value) {
+            array_push($array_data,$value);
+        }
+
         //Image Upload
         $filename = $this->image_upload($request,$validateData,'title');
 
@@ -95,30 +102,20 @@ class FilmController extends Controller
         $validateData['genre'] = $genres_name;
         $validateData['tumbnail'] = $filename;
 
-        //update pivot table
-        $array_data = [];
-
-        dd($validateData);
-
-        foreach ($validateData['genre'] as $key => $value) { //erorr di sini, validateData dianggap object, dahal array
-            array_push($array_data,$value);
-        }
-
         // remove old records and add new in pivot table
         // sync function requires array.
-        $film_id = Film::with('genres')->first();
-        $film_id->genres()->sync($array_data);
+        $film->genres()->sync($array_data);
 
-        $film->update($validateData); //Problem: yang tampil di index (genre, tumbnail)
+        $film->update($validateData);
 
-        return redirect()->route('films.index',['film'=>$film->id])
+        return redirect()->route('admin.films.index',['film'=>$film->id])
         ->with('message',"\"{$validateData['title']}\" Data, updated succesfully");
     }
 
     public function destroy(Film $film)
     {
         $film->delete();
-        return redirect()->route('films.index')->with('message', "$film->title deleted succesfully");
+        return redirect()->route('admin.films.index')->with('message', "$film->title deleted succesfully");
     }
 
     public function image_upload(Request $request, Array $array, String $title){
@@ -134,7 +131,7 @@ class FilmController extends Controller
             $filename = $slug . '-' . time() . "." . $extFile;
 
             //Upload Process, Save to "uploads" folder
-            $request->tumbnail->storeAs('/public/uploads', $filename);
+            $request->tumbnail->storeAs('/uploads', $filename);
 
         } else{
             //if user not upload any file, insert default image

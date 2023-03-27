@@ -71,7 +71,7 @@ class GenreController extends Controller
 
         $genre->update($validateData);
 
-        return redirect()->route('films.index',['film'=>$genre->id])
+        return redirect()->route('genres.index',['genre'=>$genre->id])
         ->with('message',"\"{$validateData['name']}\" Data, updated succesfully");
     }
 
