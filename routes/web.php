@@ -1,13 +1,16 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\Kasir\Seat;
+use App\Http\Livewire\Kasir\Index;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\transactions;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,25 +24,31 @@ use App\Http\Controllers\GenreController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
-});
+    if (auth()->user()->name == "admin") {
+        return redirect(route('admin.index'));
+    } else {
+        return redirect(route('film'));
+    }
+})->middleware(['auth', 'verified'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'role:admin'])->name('dashboard');
 
-Route::get('/admin', function () {
-    return view('admin.index');
-})->middleware(['auth', 'role:admin'])->name('admin.index');
+// Route::get('/admin', function () {
+//     return view('admin.index');
+// })->middleware(['auth', 'role:admin'])->name('admin.index');
 
+// Profile
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth','role:admin'])->name('admin.')->prefix('admin')->group(function(){
-    Route::get('/',[IndexController::class, 'index'])->name('index');
+// Admin
+Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
+    Route::get('/', [IndexController::class, 'index'])->name('index');
     Route::resource('/roles', RoleController::class);
     Route::resource('/permissions', PermissionController::class);
     Route::resource('/users', UserController::class);
@@ -71,4 +80,11 @@ Route::middleware(['auth','role:admin'])->name('admin.')->prefix('admin')->group
     ->name('genres.destroy');
 });
 
-require __DIR__.'/auth.php';
+// Transaksi
+Route::get('admin/transaction', [transactions::class, 'index'])->name('admin.transaction.index');
+
+Route::get('film', Index::class)->middleware(['auth', 'verified'])->name('film');
+
+Route::get('seat', Seat::class)->middleware(['auth', 'verified'])->name('seat');
+
+require __DIR__ . '/auth.php';
