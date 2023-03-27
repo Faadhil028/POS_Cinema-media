@@ -1,5 +1,10 @@
 <x-admin-layout>
     <div class="py-12 w-full">
+        @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @endif
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">             
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -47,9 +52,18 @@
                                         {{ $role->updated_at }}
                                     </th>
                                     <td class="px-6 py-4">
-                                        <a href="{{route('admin.roles.edit', $role->id)}}" class="font-medium text-sky-500 hover:underline">Edit</a>
-                                        /
-                                        <a href="#" class="font-medium text-sky-500 hover:underline">Delete</a>
+                                        <div class="flex">
+                                            <a href="{{route('admin.roles.edit', $role->id)}}" class="font-medium text-sky-500 hover:underline px-1">Edit </a>
+                                            /
+                                            <!-- <a href="#" class="font-medium text-sky-500 hover:underline">Delete</a> -->
+                                            <form method="POST" action="{{ route('admin.roles.destroy', $role->id) }}" onsubmit="return confirm('Are you sure?');" class="px-1 font-medium text-sky-500 hover:underline">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button type="submit">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

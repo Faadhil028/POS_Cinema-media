@@ -1,11 +1,11 @@
 <x-admin-layout>
 <div class="py-12 w-full">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             <h1 class="uppercase text-2xl font-semibold tracking-widest text-white ml-4">add user</h1>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-5">   
 
 
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('admin.users.store') }}">
                     @csrf
             
                     <!-- Name -->
