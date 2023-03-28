@@ -16,7 +16,7 @@
                 <h1>Edit Film</h1>
                 <hr>
 
-                <form action="{{ route('admin.films.update', ['film' => $film->id]) }}" method="POST">
+                <form action="{{ route('admin.films.update', ['film' => $film->id]) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="mb-3">
@@ -29,8 +29,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="duration">Duration</label>
-                    <input type="text" id="duration" name="duration" value="{{ old('duration') ??
+                    <label class="form-label" for="duration">Duration in Minutes</label>
+                    <input type="number" id="duration" name="duration" min="0" max="999" value="{{ old('duration') ??
                         $film->duration}}" class="form-control @error('duration') is-invalid @enderror">
                     @error('duration')
                         <div class="text-danger">{{ $message }}</div>
@@ -40,8 +40,11 @@
                 <div class="mb-3">
                     <label class="form-label" for="genre[]">Genre</label><br>
                     @forelse ($genres as $genre)
+                        {{ $checked = "" }}
                             <input type="checkbox" name="genre[]" id="{{ $genre->name }}" value="{{ $genre->id }}"
-                            class="@error('genre') is-invalid @enderror">
+                            class="@error('genre') is-invalid @enderror"
+                            @if (in_array($genre->id,$genreIds)) {{ $checked = "checked" }}
+                            @endif>
                             <label for="{{ $genre->name }}">{{ $genre->name }}</label><br>
                     @empty
                         <p>Looks like there is no active genre</p>
@@ -62,7 +65,7 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="start_date">Start Date</label>
-                    <input type="datetime-local" id="start_date" name="start_date" value="{{ old('start_date') ??
+                    <input type="date" id="start_date" name="start_date" value="{{ old('start_date') ??
                         $film->start_date}}" class="form-control @error('start_date') is-invalid @enderror">
                     @error('start_date')
                         <div class="text-danger">{{ $message }}</div>
@@ -71,7 +74,7 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="end_date">End Date</label>
-                    <input type="datetime-local" id="end_date" name="end_date" value="{{ old('end_date') ??
+                    <input type="date" id="end_date" name="end_date" value="{{ old('end_date') ??
                         $film->end_date}}" class="form-control @error('end_date') is-invalid @enderror">
                     @error('end_date')
                         <div class="text-danger">{{ $message }}</div>
@@ -96,13 +99,13 @@
                         $currently_airing = '';
                         $ended = '';
                     ?>
-                    @if (old('status')=='COMING SOON') $coming_soon = 'selected'
-                    @elseif (old('status')=='CURRENTLY AIRING') $currently_airing = 'selected'
-                    @else $ended = 'selected';
+                    @if ($film->status =='COMING SOON') {{$coming_soon = 'selected'}}
+                    @elseif ($film->status=='CURRENTLY AIRING') {{$currently_airing = 'selected'}}
+                    @else {{ $ended = 'selected'}}
                     @endif
                         <option value="COMING SOON" {{ $coming_soon }}>COMING SOON</option>
                         <option value="CURRENTLY AIRING" {{ $currently_airing }}>CURRENTLY AIRING</option>
-                        <option value="ENDED" {{ $ended }}>ENDED</option>
+                        <option value="ENDED" {{ $ended }} >ENDED</option>
                     </select>
                     @error('status')
                         <div class="text-danger">{{ $message }}</div>

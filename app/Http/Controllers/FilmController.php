@@ -26,7 +26,7 @@ class FilmController extends Controller
         //Validation Process
         $validateData = $request->validate([
             'title'         => 'required',
-            'duration'      => 'required|max:3',
+            'duration'      => 'required|min:0|not_in:0|max:3',
             'genre'         => 'required',
             'description'   => 'required',
             'start_date'    => 'required',
@@ -69,14 +69,19 @@ class FilmController extends Controller
 
     public function edit(Film $film){
         $genres = Genre::where('is_active',1)->get();
-        return view('films.edit',['film' => $film,'genres' => $genres]);
+        $genreList = Film::find($film->id)->genres;
+        $genreIds = [];
+        foreach ($genreList as $value) {
+            array_push($genreIds,$value->id);
+        };
+        return view('films.edit',['film' => $film,'genres' => $genres,'genreIds' => $genreIds]);
     }
 
     public function update(Request $request, Film $film){
 
         $validateData = $request->validate([
             'title'         => 'required',
-            'duration'      => 'required|max:3',
+            'duration'      => 'required|min:0|not_in:0|max:3',
             'genre'         => 'required',
             'description'   => 'required',
             'start_date'    => 'required',

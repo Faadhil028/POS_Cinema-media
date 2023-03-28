@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label" for="duration">Duration</label>
+                        <label class="form-label" for="duration">Duration in Minutes</label>
                         <input type="number" id="duration" name="duration" value="{{ old('duration') }}"
                         class="form-control @error('duration') is-invalid @enderror">
                         @error('duration')
@@ -61,7 +61,7 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="start_date">Start Date</label>
-                        <input type="datetime-local" id="start_date" name="start_date" value="{{ old('start_date') }}"
+                        <input type="date" id="start_date" name="start_date" value="{{ old('start_date') }}"
                         class="form-control @error('start_date') is-invalid @enderror">
                         @error('start_date')
                             <div class="text-danger">{{ $message }}</div>
@@ -70,7 +70,7 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="end_date">End Date</label>
-                        <input type="datetime-local" id="end_date" name="end_date" value="{{ old('end_date') }}"
+                        <input type="date" id="end_date" name="end_date" value="{{ old('end_date') }}"
                         class="form-control @error('end_date') is-invalid @enderror">
                         @error('end_date')
                             <div class="text-danger">{{ $message }}</div>
