@@ -25,9 +25,9 @@
                             </form>
                         </div>
                         <div class="pt-4 px-4">
-                            <a href="{{ route('admin.roles.create') }}"
-                                class="px-4 py-2 bg-sky-500 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">Create
-                                Roles</a>
+                            <a href="{{ route('admin.films.create') }}"
+                                class="px-4 py-2 bg-sky-500 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">Add
+                                Films</a>
                         </div>
                     </div>
                 
