@@ -1,9 +1,20 @@
 <div>
-    <div class="bg-white p-3" style="border-radius: 20px">
-        <div class="container m-auto">
-            <button class="btn btn-dark" style="border-radius: 10px">Action</button>
-            <button class="btn btn-dark" style="border-radius: 10px">Komedi</button>
-            <button class="btn btn-dark" style="border-radius: 10px">Horror</button>
+    <div class="bg-white p-3"
+        style="border-radius: 20px; display : @if ($showIndex === true) block @else none @endif;">
+        <div class="d-flex justify-content-between">
+            <div class="p-2">
+                <button class="btn btn-dark" style="border-radius: 10px">Action</button>
+                <button class="btn btn-dark" style="border-radius: 10px">Komedi</button>
+                <button class="btn btn-dark" style="border-radius: 10px">Horror</button>
+            </div>
+            <div class="p-2">
+                {{-- <input type="text" class="form-control" id="search" placeholder="search" wire:model='search'> --}}
+                <div class="input-group">
+                    <input class="form-control border-2 rounded-pill" type="search" wire:model='search'
+                        placeholder="search">
+                </div>
+                <p>{{ $search }}</p>
+            </div>
         </div>
         <div class="container pt-3">
             <div class="row row-cols-4 g-4">
@@ -15,8 +26,8 @@
                                 style="border-radius: 20px">
                             {{-- <img src="" alt=""> --}}
                             <div class="image-caption">
-                                <button wire:click.prefetch='pickSeat'>13 : 05</button>
-                                <button wire:click.prefetch='pickSeat'>14:25</button>
+                                <p> S1 <button wire:click.prevent='pickSeat(1)'>13 : 05</button></p>
+                                <p> S2 <button wire:click.prevent='pickSeat(1)'>14:25</button> </p>
                             </div>
                         </div>
                         <div class="poster-title mt-3 ml-3">The Matrix: Resurrections</div>
@@ -81,7 +92,8 @@
                 <div class="col d-flex justify-content-center">
                     <a href="" class="text-decoration-none text-dark">
                         <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.studiobinder.com%2Fwp-content%2Fuploads%2F2017%2F12%2FMovie-Poster-Template-Dark-with-Image.jpg&f=1&nofb=1&ipt=5a7f3b9e7bcfb31610b252823bb289789b1f0be5ec1e9aad9004e06a6e1fb737&ipo=images"
-                            class="poster-img" alt="image1" height="300" width="200" style="border-radius: 20px">
+                            class="poster-img" alt="image1" height="300" width="200"
+                            style="border-radius: 20px">
                         <div class="poster-title mt-3">The Matrix: Resurrections</div>
                     </a>
                 </div>
@@ -136,4 +148,5 @@
             </div>
         </div>
     </div>
+    <livewire:kasir.seat />
 </div>
