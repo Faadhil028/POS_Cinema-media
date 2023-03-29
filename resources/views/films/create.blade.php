@@ -41,34 +41,32 @@
                     </div>
 
                     <div class="flex justify-between">
-                    <div class="mb-3 w-full mr-2">
-                            <label class="dark:text-white text-base">Duration</label><br>
-                            <x-text-input type="number" id="duration" name="duration" value="{{ old('duration') }}"
-                            class="block mt-1 w-full @error('duration') is-invalid @enderror"/>
-                            @error('duration')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        <div class="mb-3 w-full mr-2">
+                                <label class="dark:text-white text-base">Duration</label><br>
+                                <x-text-input type="number" id="duration" name="duration" value="{{ old('duration') }}"
+                                class="block mt-1 w-full @error('duration') is-invalid @enderror"/>
+                                @error('duration')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                        <div class="mb-3 w-full mx-2">
-                            <label class="dark:text-white text-base" for="start_date">Start Date</label><br>
-                            <x-text-input type="datetime-local" id="start_date" name="start_date" value="{{ old('start_date') }}"
-                            class="block mt-1 w-full @error('start_date') is-invalid @enderror"/>
-                            @error('start_date')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-    
-                        <div class="mb-3 w-full ml-2">
-                            <label class="dark:text-white text-base" for="end_date">End Date</label><br>
-                            <x-text-input type="datetime-local" id="end_date" name="end_date" value="{{ old('end_date') }}"
-                            class="block mt-1 w-full @error('end_date') is-invalid @enderror"/>
-                            @error('end_date')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+                            <div class="mb-3 w-full mx-2">
+                                <label class="dark:text-white text-base" for="start_date">Start Date</label><br>
+                                <x-text-input type="date" id="start_date" name="start_date" value="{{ old('start_date') }}"
+                                class="block mt-1 w-full @error('start_date') is-invalid @enderror"/>
+                                @error('start_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                    </div>
+                            <div class="mb-3 w-full ml-2">
+                                <label class="dark:text-white text-base" for="end_date">End Date</label><br>
+                                <x-text-input type="date" id="end_date" name="end_date" value="{{ old('end_date') }}"
+                                class="block mt-1 w-full @error('end_date') is-invalid @enderror"/>
+                                @error('end_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
 
                     <div class="mb-3">
                         <label class=" dark:text-white text-base" for="tumbnail">Tumbnail</label>

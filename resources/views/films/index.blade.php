@@ -31,7 +31,7 @@
                                 Films</a>
                         </div>
                     </div>
-                
+
 
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -51,13 +51,13 @@
                         @forelse ($films as $film)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                                     id="search_list">
-                                
+
                                 <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $film->title }}</th>
                                 <th>{{ $film->duration }}</th>
                                 <th>{{ $film->genre }}</th>  {{-- Problematic dengan pengambilan data genre --}}
                                 <th>{{ $film->description }}</th>
-                                <th>{{ $film->tumbnail }}</th>
+                                <th><img src="{{ asset('storage/uploads/' . $film->tumbnail) }}" alt="Tumbnail Missing" class="h-16 w-auto"></th>
                                 <th>{{ $film->start_date }}</th>
                                 <th>{{ $film->end_date }}</th>
                                 <th>{{ $film->status }}</th>
@@ -71,7 +71,7 @@
                                                 ['film' => $film->id]) }}"
                                                 onsubmit="return confirm('Are you sure?');"
                                                 class="px-1 font-medium text-sky-500 hover:underline">
-    
+
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger ms-3">Delete</button>
