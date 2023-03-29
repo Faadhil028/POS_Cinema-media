@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Spatie\Permission\Models\Role;
 //use Illuminate\View\View;
 
 
@@ -24,7 +25,8 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all();
+        return view('admin.users.create', compact('roles'));
     }
 
 
@@ -46,6 +48,7 @@ class UserController extends Controller
         // event(new Registered($user));
 
         // Auth::login($user);
+        $user->assignRole($request->role);
 
         return to_route('admin.users.index');
     }
@@ -58,6 +61,29 @@ class UserController extends Controller
 
     public function edit(Request $request, User $user)
     {
-        return to_route('profile.edit');
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user', 'roles'));
+    }
+
+    public function update(Request $request, User $user)
+    {
+        if ($request->password) {
+            $validated = $request->validate([
+                'name' => ['required'],
+                'email' => ['required', 'email'],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ]);
+        } else {
+            $validated = $request->validate([
+                'name' => ['required'],
+                'email' => ['required', 'email'],
+            ]);
+        }
+        $password = Hash::make($validated['password']);
+        $user->update($validated);
+        $user->update(["password" => $password]);
+        $user->syncRoles($request->role);
+
+        return to_route('admin.users.index');
     }
 }

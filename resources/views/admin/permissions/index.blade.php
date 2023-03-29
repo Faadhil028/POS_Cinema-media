@@ -41,7 +41,7 @@
                         </div>
                         <div class="pt-4 px-4">
                             <a href="{{ route('admin.permissions.create') }}"
-                                class="px-4 py-2 bg-sky-500 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">Create
+                                class="px-4 py-2 bg-sky-500 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">Add
                                 Permissions</a>
                         </div>
                     </div>
