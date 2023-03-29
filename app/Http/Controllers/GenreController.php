@@ -39,7 +39,7 @@ class GenreController extends Controller
         // dd($validateData);
         Genre::create($validateData);
 
-        return redirect()->route('genres.index')
+        return redirect()->route('admin.genres.index')
         ->with('message', "\"{$validateData['name']}\" genre added succesfully!");
     }
 
@@ -56,7 +56,7 @@ class GenreController extends Controller
      */
     public function edit(Genre $genre)
     {
-        return view('genres.edit',['genres' => $genre]);
+        return view('genres.edit',['genre' => $genre]);
     }
 
     /**
@@ -71,7 +71,7 @@ class GenreController extends Controller
 
         $genre->update($validateData);
 
-        return redirect()->route('genres.index',['genre'=>$genre->id])
+        return redirect()->route('admin.genres.index',['genre'=>$genre->id])
         ->with('message',"\"{$validateData['name']}\" Data, updated succesfully");
     }
 
@@ -81,6 +81,6 @@ class GenreController extends Controller
     public function destroy(Genre $genre)
     {
         $genre->delete();
-        return redirect()->route('genres.index')->with('message', "$genre->name genre deleted succesfully");
+        return redirect()->route('admin.genres.index')->with('message', "$genre->name genre deleted succesfully");
     }
 }
