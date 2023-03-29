@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 23, 2023 at 04:26 AM
+-- Generation Time: Mar 27, 2023 at 03:36 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `poscinema`
+-- Database: `ticketing_movie`
 --
 
 -- --------------------------------------------------------
@@ -51,8 +51,18 @@ CREATE TABLE `films` (
   `tumbnail` varchar(255) NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
-  `status` enum('COOMING SOON','CURRENTLY AIRING','END') NOT NULL DEFAULT 'COOMING SOON'
+  `status` enum('COMING SOON','CURRENTLY AIRING','ENDED') CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'COMING SOON',
+  `genre` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Dumping data for table `films`
+--
+
+INSERT INTO `films` (`id`, `title`, `duration`, `description`, `tumbnail`, `start_date`, `end_date`, `status`, `genre`) VALUES
+(2, 'Seram', 120, 'Seram Island Adventure', '20220403091812.png', '2023-03-24 03:00:00', '2023-03-24 00:00:00', 'CURRENTLY AIRING', '[\"5\",\"6\"]'),
+(3, 'Seram', 120, 'Seram Island Adventure', 'seram-1679644128.png', '2023-03-24 00:00:00', '2023-04-07 00:00:00', 'COMING SOON', 'Action'),
+(4, 'Seram 2', 111, 'The Traveler has survived the Seram Island, but instead of return to home, he trapped in the unknown world', 'seram-2-1679644406.png', '2023-03-24 14:50:00', '2023-04-07 14:51:00', 'COMING SOON', 'Horror');
 
 -- --------------------------------------------------------
 
@@ -65,6 +75,14 @@ CREATE TABLE `films_has_genres` (
   `genres_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Dumping data for table `films_has_genres`
+--
+
+INSERT INTO `films_has_genres` (`films_id`, `genres_id`) VALUES
+(2, 5),
+(2, 6);
+
 -- --------------------------------------------------------
 
 --
@@ -74,8 +92,17 @@ CREATE TABLE `films_has_genres` (
 CREATE TABLE `genres` (
   `id` int NOT NULL,
   `name` varchar(45) NOT NULL,
-  `is_active` tinyint NOT NULL
+  `is_active` tinyint NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Dumping data for table `genres`
+--
+
+INSERT INTO `genres` (`id`, `name`, `is_active`) VALUES
+(5, 'Action', 1),
+(6, 'Horror', 1),
+(7, 'Fantasy', 0);
 
 -- --------------------------------------------------------
 
@@ -113,6 +140,13 @@ CREATE TABLE `model_has_roles` (
   `model_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `model_has_roles`
+--
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(1, 'App\\Models\\User', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -138,6 +172,16 @@ CREATE TABLE `permissions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(3, 'create.film', 'web', '2023-03-26 20:05:51', '2023-03-26 20:05:51'),
+(4, 'read.film', 'web', '2023-03-26 20:10:30', '2023-03-26 20:10:30'),
+(5, 'update.film', 'web', '2023-03-26 20:12:02', '2023-03-26 20:12:02'),
+(6, 'delete.film', 'web', '2023-03-26 20:12:17', '2023-03-26 20:12:17');
 
 -- --------------------------------------------------------
 
@@ -172,6 +216,14 @@ CREATE TABLE `roles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'web', '2023-03-26 19:57:34', '2023-03-26 19:57:34'),
+(2, 'operator', 'web', '2023-03-26 19:57:34', '2023-03-26 19:57:34');
+
 -- --------------------------------------------------------
 
 --
@@ -182,6 +234,14 @@ CREATE TABLE `role_has_permissions` (
   `permission_id` bigint UNSIGNED NOT NULL,
   `role_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(3, 1),
+(4, 1);
 
 -- --------------------------------------------------------
 
@@ -194,62 +254,6 @@ CREATE TABLE `seats` (
   `row` varchar(45) NOT NULL,
   `number` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Dumping data for table `seats`
---
-
-INSERT INTO `seats` (`id`, `row`, `number`) VALUES
-(1, 'A', '1'),
-(2, 'A', '2'),
-(3, 'A', '3'),
-(4, 'A', '4'),
-(5, 'A', '5'),
-(6, 'A', '6'),
-(7, 'A', '7'),
-(8, 'A', '8'),
-(9, 'A', '9'),
-(10, 'A', '10'),
-(11, 'B', '1'),
-(12, 'B', '2'),
-(13, 'B', '3'),
-(14, 'B', '4'),
-(15, 'B', '5'),
-(16, 'B', '6'),
-(17, 'B', '7'),
-(18, 'B', '8'),
-(19, 'B', '9'),
-(20, 'B', '10'),
-(21, 'C', '1'),
-(22, 'C', '2'),
-(23, 'C', '3'),
-(24, 'C', '4'),
-(25, 'C', '5'),
-(26, 'C', '6'),
-(27, 'C', '7'),
-(28, 'C', '8'),
-(29, 'C', '9'),
-(30, 'C', '10'),
-(31, 'D', '1'),
-(32, 'D', '2'),
-(33, 'D', '3'),
-(34, 'D', '4'),
-(35, 'D', '5'),
-(36, 'D', '6'),
-(37, 'D', '7'),
-(38, 'D', '8'),
-(39, 'D', '9'),
-(40, 'D', '10'),
-(41, 'E', '1'),
-(42, 'E', '2'),
-(43, 'E', '3'),
-(44, 'E', '4'),
-(45, 'E', '5'),
-(46, 'E', '6'),
-(47, 'E', '7'),
-(48, 'E', '8'),
-(49, 'E', '9'),
-(50, 'E', '10');
 
 -- --------------------------------------------------------
 
@@ -265,15 +269,6 @@ CREATE TABLE `studios` (
   `price` int NOT NULL,
   `weekend_price` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Dumping data for table `studios`
---
-
-INSERT INTO `studios` (`id`, `name`, `class`, `is_active`, `price`, `weekend_price`) VALUES
-(1, 'studio 1', NULL, 1, 40000, 50000),
-(2, 'studio 2', NULL, 1, 40000, 50000),
-(3, 'studio 3', NULL, 1, 80000, 100000);
 
 -- --------------------------------------------------------
 
@@ -367,6 +362,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@email.com', '2023-03-26 19:57:34', '$2y$10$IMXSN4C/3l61Zw5rVeVPqe1PxpVDx5TVzJR8aHUnkO/uy9pRyMwNi', NULL, '2023-03-26 19:57:34', '2023-03-26 19:57:34');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -381,7 +383,8 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `films`
 --
 ALTER TABLE `films`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_UNIQUE` (`id`);
 
 --
 -- Indexes for table `films_has_genres`
@@ -527,13 +530,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `films`
 --
 ALTER TABLE `films`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `genres`
 --
 ALTER TABLE `genres`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -545,7 +548,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -557,7 +560,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `seats`
@@ -587,7 +590,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -597,27 +600,27 @@ ALTER TABLE `users`
 -- Constraints for table `films_has_genres`
 --
 ALTER TABLE `films_has_genres`
-  ADD CONSTRAINT `fk_films_has_genres_films1` FOREIGN KEY (`films_id`) REFERENCES `films` (`id`),
-  ADD CONSTRAINT `fk_films_has_genres_genres1` FOREIGN KEY (`genres_id`) REFERENCES `genres` (`id`);
+  ADD CONSTRAINT `fk_films_has_genres_films1` FOREIGN KEY (`films_id`) REFERENCES `films` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_films_has_genres_genres1` FOREIGN KEY (`genres_id`) REFERENCES `genres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `model_has_permissions`
 --
 ALTER TABLE `model_has_permissions`
-  ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `role_permission`.`permissions` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_model_has_permissions_permissions1` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`);
 
 --
 -- Constraints for table `model_has_roles`
 --
 ALTER TABLE `model_has_roles`
-  ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `role_permission`.`roles` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_model_has_roles_roles1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 
 --
 -- Constraints for table `role_has_permissions`
 --
 ALTER TABLE `role_has_permissions`
-  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `role_permission`.`permissions` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `role_permission`.`roles` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_role_has_permissions_permissions1` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`),
+  ADD CONSTRAINT `fk_role_has_permissions_roles1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 
 --
 -- Constraints for table `timetables`
@@ -647,7 +650,7 @@ ALTER TABLE `timetable_has_transaction`
 --
 ALTER TABLE `transactions`
   ADD CONSTRAINT `fk_transaction_timetable1` FOREIGN KEY (`timetable_id`) REFERENCES `timetables` (`id`),
-  ADD CONSTRAINT `fk_transactions_users1` FOREIGN KEY (`user_id`) REFERENCES `role_permission`.`users` (`id`);
+  ADD CONSTRAINT `fk_transactions_users2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `transaction_detail`
