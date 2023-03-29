@@ -44,10 +44,6 @@
             </tbody>
         </table>
     </div>
-    <div class="p-2 d-block mt-3" style="border-radius: 10px;">
-        <button class="btn btn-info" wire:click='showCash'>Cash</button>
-        <button class="btn btn-info" wire:click='showQris'>Qris</button>
-    </div>
     <div class="card bg-dark p-2 mt-3"
         style="border-radius: 10px; display : @if ($showCash === true) block @else none @endif;">
         <table class="text-white">
@@ -55,11 +51,13 @@
                 <tr>
                     <th>Uang Pembayaran</th>
                     <th> </th>
-                    <th>
-                        Rp
-                        <input type="number" min="0" wire:model='amountPaid' wire:change='calculateChange'
-                            oninput="validity.valid||(value='');"
-                            value="{{ $amountPaid ? number_format($amountPaid) : 0 }}">
+                    <th class="form-inline">
+                        <p>
+                            Rp
+                            <input type="number" class="form-control" min="0" wire:model='amountPaid'
+                                wire:change='calculateChange' oninput="validity.valid||(value=0);"
+                                value="{{ $amountPaid ? number_format($amountPaid) : 0 }}">
+                        </p>
                     </th>
                 </tr>
                 <tr>
@@ -75,6 +73,15 @@
         <h1>Ini QRIS</h1>
     </div>
     <div class="p-2 d-block mt-3" style="border-radius: 10px;">
+        <button class="p-2"
+            style="width:100px; border: 1px solid black; border-radius: 15px; @if ($showCash) background-color: black; color: white; @else  background-color: white; @endif"
+            wire:click='showCash'>Cash</button>
+        <button class="p-2"
+            style="width:100px; border: 1px solid black; border-radius: 15px; @if ($showQris) background-color: black; color: white; @else  background-color: white; @endif"
+            wire:click='showQris'>Qris</button>
+    </div>
+    <div class="p-2
+            d-block mt-3" style="border-radius: 10px;">
         <button class="btn btn-dark form-control" wire:click='store'>Order</button>
     </div>
 </div>

@@ -40,22 +40,22 @@
                         </div>
                         <div class="seat">
                             <input type="checkbox" name="A2" id="A2" value="A2" wire:model='pickSeats'
-                                wire:change='updateSeats'>
+                                wire:change='updateSeats' hidden>
                             <label for="A2">A2</label>
                         </div>
                         <div class="seat">
                             <input type="checkbox" name="A3" id="A3" value="A3" wire:model='pickSeats'
-                                wire:change='updateSeats'>
+                                wire:change='updateSeats' hidden>
                             <label for="A3">A3</label>
                         </div>
                         <div class="seat">
                             <input type="checkbox" name="A4" id="A4" value="A4" wire:model='pickSeats'
-                                wire:change='updateSeats'>
+                                wire:change='updateSeats' hidden>
                             <label for="A4">A4</label>
                         </div>
                         <div class="seat">
                             <input type="checkbox" name="A5" id="A5" value="A5" wire:model='pickSeats'
-                                wire:change='updateSeats'>
+                                wire:change='updateSeats' hidden>
                             <label for="A5">A5</label>
                         </div>
                     </div>
@@ -87,23 +87,28 @@
                 <div class="col-6">
                     <div class="seats">
                         <div class="seat">
-                            <input type="checkbox" name="B1" id="B1" value="B1">
+                            <input type="checkbox" name="B1" id="B1"
+                                value="B1"wire:model='pickSeats' wire:change='updateSeats' hidden>
                             <label for="B1">B1</label>
                         </div>
                         <div class="seat">
-                            <input type="checkbox" name="B2" id="B2" value="B2">
+                            <input type="checkbox" name="B2" id="B2" value="B2"
+                                wire:model='pickSeats' wire:change='updateSeats' hidden>
                             <label for="B2">B2</label>
                         </div>
                         <div class="seat">
-                            <input type="checkbox" name="B3" id="B3" value="B3">
+                            <input type="checkbox" name="B3" id="B3" value="B3"
+                                wire:model='pickSeats' wire:change='updateSeats' hidden>
                             <label for="B3">B3</label>
                         </div>
                         <div class="seat">
-                            <input type="checkbox" name="B4" id="B4" value="B4">
+                            <input type="checkbox" name="B4" id="B4" value="B4"
+                                wire:model='pickSeats' wire:change='updateSeats' hidden>
                             <label for="B4">B4</label>
                         </div>
                         <div class="seat">
-                            <input type="checkbox" name="B5" id="B5" value="B5">
+                            <input type="checkbox" name="B5" id="B5" value="B5"
+                                wire:model='pickSeats' wire:change='updateSeats' hidden>
                             <label for="B5">B5</label>
                         </div>
                     </div>

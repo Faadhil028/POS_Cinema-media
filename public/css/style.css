@@ -125,7 +125,8 @@ ol {
     font-weight: bolder;
     line-height: 1.5rem;
     padding: 4px 0;
-    background: #5bfc60;
+    background: white;
+    border: 1px solid;
     border-radius: 5px;
     color: black;
 }
@@ -151,14 +152,14 @@ ol {
     font-weight: bolder;
     line-height: 1.5rem;
     padding: 4px 0;
-    background: red;
+    background: #1a2c50;
     border-radius: 5px;
-    color: black;
+    color: white;
 }
 
 .seat label:hover {
     cursor: pointer;
-    box-shadow: 0 0 0px 2px green;
+    box-shadow: 0 0 0px 2px #118eea;
     scale: 1.2;
 }
 
@@ -180,7 +181,8 @@ ol {
     position: absolute;
 }
 .seat input[type="checkbox"]:checked + label {
-    background: yellow;
+    background: #118eea;
+    color: white;
 }
 
 .voucher {
