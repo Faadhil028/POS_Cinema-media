@@ -30,6 +30,10 @@ class Kasir extends Component
     public function store()
     {
         // dd($this->seats, $this->total);
-        return redirect(route('deskripsi'));
+        // return redirect(route('deskripsi'));
+        $this->dispatchBrowserEvent('show-form', ['newMoney' => $this->total ,'newSeat' => $this->seats]);
+
+        // $this->dispatchBrowserEvent('show-form');
+
     }
 }
