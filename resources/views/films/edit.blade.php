@@ -36,7 +36,7 @@
 
                     <div class="mb-3">
                         <label class="dark:text-white text-base" for="description">Description</label><br>
-                        <x-text-input type="text" id="description" name="description" value="{{ old('description') ?? $film->description}}}}"
+                        <x-text-input type="text" id="description" name="description" value="{{ old('description') ?? $film->description }}"
                         class="block mt-1 w-full @error('description') is-invalid @enderror"/>
                         @error('description')
                             <div class="text-danger">{{ $message }}</div>
@@ -46,7 +46,7 @@
                     <div class="flex justify-between">
                         <div class="mb-3 w-full mr-2">
                             <label class="dark:text-white text-base">Duration</label><br>
-                            <x-text-input type="number" id="duration" name="duration" value="{{ old('duration') }}"
+                            <x-text-input type="number" id="duration" name="duration" value="{{ old('duration') ?? $film->duration}}"
                             class="block mt-1 w-full @error('duration') is-invalid @enderror"/>
                             @error('duration')
                                 <div class="text-danger">{{ $message }}</div>
