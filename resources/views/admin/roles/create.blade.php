@@ -55,6 +55,42 @@
     crossorigin="anonymous"></script>
 <script>
     @foreach ($tables as $table)
+        var tbClass = $(`.{{ $table }}`);
+        var allChecked = tbClass.length === tbClass.filter(":checked").length;
+
+        // Ketika semua tercentang maka label judul akan checked (belum bisa jalan)
+        // ketika salah satu tidak tercentang label judul tidak akan checked
+        // tbClass.each(function(event) {
+        //     $(this).on("click", function() {
+        //         if (this.checked) {
+        //             if (allChecked) {
+        //                 $(`.check_all_{{ $table }}`).each(function() {
+        //                     this.checked = true;
+        //                 })
+        //             }
+        //         } else {
+        //             $(`.check_all_{{ $table }}`).each(function() {
+        //                 this.checked = false;
+        //             })
+        //         }
+        //     })
+        // })
+
+
+        tbClass.click(function(event) {
+            if (this.checked) {
+                if (allChecked) {
+                    $(`.check_all_{{ $table }}`).each(function() {
+                        this.checked = true;
+                    })
+                }
+            } else {
+                $(`.check_all_{{ $table }}`).each(function() {
+                    this.checked = false;
+                })
+            }
+        })
+
         $(`.check_all_{{ $table }}`).click(function(event) {
             if (this.checked) {
                 // Iterate each checkbox

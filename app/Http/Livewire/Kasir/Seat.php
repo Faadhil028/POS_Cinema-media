@@ -6,12 +6,20 @@ use Livewire\Component;
 
 class Seat extends Component
 {
+    public $showSeat = false;
     public $pickSeats = [];
-    public $price = 25000;
 
+    protected $listeners = ['showSeat' => 'showSeatComponent'];
     public function render()
     {
-        return view('livewire.kasir.seat')->extends('kasir.layouts.main')->section('content');
+        return view('livewire.kasir.seat')
+            // ->extends('kasir.layouts.main', ['price' => $this->price, 'filmName' => $this->filmName])
+            ->section('content');
+    }
+
+    public function showSeatComponent()
+    {
+        $this->showSeat = true;
     }
 
     public function updateSeats()

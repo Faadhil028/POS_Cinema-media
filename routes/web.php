@@ -22,10 +22,10 @@ use App\Http\Controllers\transactions;
 */
 
 Route::get('/', function () {
-    if (auth()->user()->name == "admin") {
+    if (auth()->user()->hasRole('admin')) {
         return redirect(route('admin.index'));
     } else {
-        return redirect(route('film'));
+        return redirect(route('pos.film'));
     }
 })->middleware(['auth', 'verified'])->name('home');
 
@@ -50,13 +50,12 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
     Route::resource('/roles', RoleController::class);
     Route::resource('/permissions', PermissionController::class);
     Route::resource('/users', UserController::class);
+    Route::get('transaction', [transactions::class, 'index'])->name('transaction.index');
 });
 
-// Transaksi
-Route::get('admin/transaction', [transactions::class, 'index'])->name('admin.transaction.index');
-
-Route::get('film', Index::class)->middleware(['auth', 'verified'])->name('film');
-
-Route::get('seat', Seat::class)->middleware(['auth', 'verified'])->name('seat');
+Route::middleware(['auth', 'verified'])->name('pos.')->prefix('pos')->group(function () {
+    Route::get('/', Index::class)->middleware(['auth', 'verified'])->name('film');
+    // Route::get('seat', Seat::class)->middleware(['auth', 'verified'])->name('seat');
+});
 
 require __DIR__ . '/auth.php';

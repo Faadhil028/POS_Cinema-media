@@ -62,7 +62,15 @@
         // Ketika semua tercentang maka label judul akan checked (belum bisa jalan)
         tbClass.click(function(event) {
             if (this.checked) {
-
+                if (allChecked) {
+                    $(`.check_all_{{ $table }}`).each(function() {
+                        this.checked = true;
+                    })
+                }
+            } else {
+                $(`.check_all_{{ $table }}`).each(function() {
+                    this.checked = false;
+                })
             }
         })
 

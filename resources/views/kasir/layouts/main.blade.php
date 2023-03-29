@@ -71,9 +71,9 @@
             <div class="col-lg mt-1">
                 @yield('content')
             </div>
-            {{-- <div class="col-lg-4 mt-1" style="border-radius: 20px">
-                @include('livewire.kasir.kasir')
-            </div> --}}
+            <div class="col-lg-4 mt-1" style="border-radius: 20px">
+                @livewire('kasir.kasir', ['price' => $price, 'filmName' => $filmName])
+            </div>
         </div>
     </div>
     {{-- </main> --}}

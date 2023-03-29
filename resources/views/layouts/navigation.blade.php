@@ -14,7 +14,7 @@
 
             <!-- Navigation Links -->
             <div class="hidden space-x-8 sm:-my-px sm:ml-20 sm:flex">
-                <x-nav-link :href="route('film')" :active="request()->routeIs('dashboard')">
+                <x-nav-link :href="route('pos.film')" :active="request()->routeIs('dashboard')">
                     {{ __('POS Dashboard') }}
                 </x-nav-link>
                 {{-- @role('admin') --}}
