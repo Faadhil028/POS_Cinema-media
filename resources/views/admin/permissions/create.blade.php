@@ -19,10 +19,15 @@
                             @error('name') 
                                 <span class="text-red-500 text-sm">The name field is required</span>
                             @enderror
-                            <div class="flex items-center justify-end mt-4">
-                                <button type="submit" class="p-2 bg-sky-500 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">
-                                    Add Permission
-                                </button>
+                            <div class="flex justify-end items-center mt-4">
+                                    <div class="mr-4 px-4 py-1 bg-rose-400 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">
+                                            <a href="{{ route('admin.permissions.index') }}"
+                                                class="">Cancel</a>
+                                    </div>
+                                    <button type="submit"
+                                                class="px-4 py-1 bg-sky-500 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">
+                                                Submit
+                                    </button>
                             </div>
                         </form>
                     </div>
