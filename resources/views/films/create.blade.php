@@ -67,7 +67,7 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-
+                    </div>
                     <div class="mb-3">
                         <label class=" dark:text-white text-base" for="tumbnail">Tumbnail</label>
                         <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none

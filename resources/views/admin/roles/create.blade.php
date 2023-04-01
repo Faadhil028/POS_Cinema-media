@@ -1,11 +1,6 @@
 <x-admin-layout>
     <div class="py-12 w-full">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="ml-4">
-                <a href="{{ route('admin.roles.index') }}"
-                    class="px-4 py-2 bg-sky-500 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">Index
-                    Roles</a>
-            </div>
             <h1 class="uppercase text-2xl font-semibold tracking-widest text-white ml-4 mt-10">add roles</h1>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-4">

@@ -1,7 +1,7 @@
 <x-admin-layout>
-<div class="py-6 w-full">
+<div class="py-12 w-full">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
-            <h1 class="uppercase text-2xl font-semibold tracking-widest text-white ml-4 mt-10">add films</h1>
+            <h1 class="uppercase text-2xl font-semibold tracking-widest text-white ml-4 mt-10">Edit films</h1>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
 
@@ -22,10 +22,9 @@
                         <label class="dark:text-white text-base" for="genre[]">Genre</label><br>
                         @forelse ($genres as $genre)
                             {{ $checked = "" }}
-                                <x-text-input type="checkbox" name="genre[]" id="{{ $genre->name }}" value="{{ $genre->id }}"
-                                class="@error('genre') is-invalid @enderror"/>
-                                @if (in_array($genre->id,$genreIds)) {{ $checked = "checked" }}
-                                @endif>
+                                <input type="checkbox" name="genre[]" id="{{ $genre->name }}" value="{{ $genre->id }}"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 @error('genre') is-invalid @enderror" 
+                                @if (in_array($genre->id,$genreIds)) {{ $checked = 'checked' }} @endif >
                                 <label for="{{ $genre->name }}" class="dark:text-white text-base">{{ $genre->name }}</label><br>
                         @empty
                             <p>Looks like there is no active genre</p>
@@ -37,7 +36,7 @@
 
                     <div class="mb-3">
                         <label class="dark:text-white text-base" for="description">Description</label><br>
-                        <x-text-input type="text" id="description" name="description" value="{{ old('description') ?? $film->description}}}}"
+                        <x-text-input type="text" id="description" name="description" value="{{ old('description') ?? $film->description }}"
                         class="block mt-1 w-full @error('description') is-invalid @enderror"/>
                         @error('description')
                             <div class="text-danger">{{ $message }}</div>
@@ -47,29 +46,29 @@
                     <div class="flex justify-between">
                         <div class="mb-3 w-full mr-2">
                             <label class="dark:text-white text-base">Duration</label><br>
-                            <x-text-input type="number" id="duration" name="duration" value="{{ old('duration') }}"
+                            <x-text-input type="number" id="duration" name="duration" value="{{ old('duration') ?? $film->duration}}"
                             class="block mt-1 w-full @error('duration') is-invalid @enderror"/>
                             @error('duration')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                <div class="mb-3">
-                    <label class="form-label" for="start_date">Start Date</label>
-                    <input type="datetime-local" id="start_date" name="start_date" value="{{ old('start_date') ??
-                        $film->start_date}}" class="form-control @error('start_date') is-invalid @enderror">
-                    @error('start_date')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
+                        <div class="mb-3 w-full mx-2">
+                            <label class="dark:text-white text-base" for="start_date">Start Date</label>
+                            <x-text-input type="date" id="start_date" name="start_date" value="{{ old('start_date') ??
+                                $film->start_date}}" class="block mt-1 w-full @error('start_date') is-invalid @enderror"/>
+                            @error('start_date')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                <div class="mb-3">
-                    <label class="form-label" for="end_date">End Date</label>
-                    <input type="datetime-local" id="end_date" name="end_date" value="{{ old('end_date') ??
-                        $film->end_date}}" class="form-control @error('end_date') is-invalid @enderror">
-                    @error('end_date')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
+                        <div class="mb-3 w-full mx-2">
+                            <label class="dark:text-white text-base" for="end_date">End Date</label>
+                            <x-text-input type="date" id="end_date" name="end_date" value="{{ old('end_date') ??
+                                $film->end_date}}" class="block mt-1 w-full @error('end_date') is-invalid @enderror"/>
+                            @error('end_date')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
 
                     </div>
 

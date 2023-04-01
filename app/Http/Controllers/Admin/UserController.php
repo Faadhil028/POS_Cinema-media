@@ -11,8 +11,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use Spatie\Permission\Models\Role;
-
 //use Illuminate\View\View;
 
 
@@ -26,6 +24,8 @@ class UserController extends Controller
 
     public function create()
     {
+        $roles = Role::all();
+        return view('admin.users.create', compact('roles'));
         $roles = Role::all();
         return view('admin.users.create', compact('roles'));
     }
@@ -49,6 +49,7 @@ class UserController extends Controller
         // event(new Registered($user));
 
         // Auth::login($user);
+        $user->assignRole($request->role);
 
         return to_route('admin.users.index');
     }
