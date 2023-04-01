@@ -8,7 +8,7 @@ class Index extends Component
 {
     public $showIndex = true;
     public $price = 0;
-    public $filmName = "Silahkan Pilih Film";
+    public $filmName = " ";
     public $search;
 
     // Menampilkan data film dari timetable

@@ -74,11 +74,10 @@
                                             /
                                             <!-- <a href="#" class="font-medium text-sky-500 hover:underline">Delete</a> -->
                                             <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}"
-                                                onsubmit="return confirm('Are you sure?');"
                                                 class="px-1 font-medium text-sky-500 hover:underline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit">
+                                                <button type="submit" class="delete-btn">
                                                     Delete
                                                 </button>
                                             </form>

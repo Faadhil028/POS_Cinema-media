@@ -139,7 +139,7 @@
                 </div>
             </div>
             <div class="row mb-5">
-                <div class="bg-info p-4 text-center text-white">Layar Bioskop Disini</div>
+                <div class="p-4 text-center text-white" style="background-color: #118EEA;">Layar Bioskop Disini</div>
             </div>
         </div>
     </section>

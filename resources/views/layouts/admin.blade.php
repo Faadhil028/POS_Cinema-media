@@ -31,6 +31,7 @@
         </header>
     @endif
 
+
     <!-- sidebar admin -->
     <div class="flex-col w-full md:flex md:flex-row md:min-h-screen">
         <div @click.away="open = false"
@@ -54,7 +55,9 @@
             <nav :class="{ 'block': open, 'hidden': !open }"
                 class="flex-grow px-4 pb-4 md:block md:pb-0 md:overflow-y-auto">
                 <div>
-                    @if (auth()->user()->can('read.film')||auth()->user()->can('read.timetable')||auth()->user()->can('read.transaksi')) 
+                    @if (auth()->user()->can('read.film') ||
+                            auth()->user()->can('read.timetable') ||
+                            auth()->user()->can('read.transaksi'))
                         <h4
                             class="px-4 py-1 mt-2 text-md font-semibold text-sky-500 focus:outline-none focus:shadow-outline">
                             Dashboard</h4>
@@ -62,8 +65,6 @@
                     @if (auth()->user()->can('read.film'))
                         <a class="block {{ request()->routeIs('admin.films.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                             href="{{ route('admin.films.index') }}">Film</a>
-                            
-                        
                     @endif
                     @if (auth()->user()->can('read.timetable'))
                         <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
@@ -90,9 +91,9 @@
                         <a class="block {{ request()->routeIs('admin.permissions.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                             href="{{ route('admin.permissions.index') }}">Permission</a>
                         <!-- <a class="block {{ request()->routeIs('admin.films.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                            href="{{ route('admin.films.index') }}">Film</a>
-                        <a class="block {{ request()->routeIs('admin.genres.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                            href="{{ route('admin.genres.index') }}">Genre</a> -->
+                                                                                                                                                                                                        href="{{ route('admin.films.index') }}">Film</a>
+                                                                                                                                                                                                    <a class="block {{ request()->routeIs('admin.genres.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                                                                                                                                                                                        href="{{ route('admin.genres.index') }}">Genre</a> -->
                     </div>
                 @endrole
                 <div class="mt-10">
@@ -112,6 +113,46 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        function previewImage() {
+            const img = document.querySelector('#tumbnail')
+            const imgPreview = document.querySelector('.img-preview')
+
+            imgPreview.style.display = 'block'
+
+            const oFReader = new FileReader()
+            oFReader.readAsDataURL(tumbnail.files[0])
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result
+            }
+        }
+    </script>
+
+    <script>
+        $('.delete-btn').click(function(e) {
+            e.preventDefault();
+            var form = $(this).closest('form');
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: 'Anda tidak akan dapat mengembalikan tindakan ini!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus saja!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
