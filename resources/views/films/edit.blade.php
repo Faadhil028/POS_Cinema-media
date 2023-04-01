@@ -66,7 +66,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="start_date">Start Date</label>
                     <input type="date" id="start_date" name="start_date" value="{{ old('start_date') ??
-                        $film->start_date}}" class="form-control @error('start_date') is-invalid @enderror">
+                        $start}}" class="form-control @error('start_date') is-invalid @enderror">
                     @error('start_date')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -75,7 +75,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="end_date">End Date</label>
                     <input type="date" id="end_date" name="end_date" value="{{ old('end_date') ??
-                        $film->end_date}}" class="form-control @error('end_date') is-invalid @enderror">
+                        $end}}" class="form-control @error('end_date') is-invalid @enderror">
                     @error('end_date')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
