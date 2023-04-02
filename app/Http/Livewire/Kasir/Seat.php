@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Kasir;
 
+use App\Models\Seat as ModelsSeat;
 use Livewire\Component;
 
 class Seat extends Component
@@ -12,7 +13,9 @@ class Seat extends Component
     protected $listeners = ['showSeat' => 'showSeatComponent'];
     public function render()
     {
-        return view('livewire.kasir.seat')
+        // dd(ModelsSeat::all());
+        $seats = ModelsSeat::all();
+        return view('livewire.kasir.seat', compact('seats'))
             // ->extends('kasir.layouts.main', ['price' => $this->price, 'filmName' => $this->filmName])
             ->section('content');
     }

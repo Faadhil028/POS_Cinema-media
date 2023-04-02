@@ -18,6 +18,26 @@ class Kasir extends Component
     public function seatsUpdated($value)
     {
         $this->seats = $value;
+        usort($this->seats, function ($a, $b) {
+            // memisahkan karakter dan angka pada string
+            preg_match('/^([a-zA-Z]+)(\d+)$/', $a, $aMatches);
+            preg_match('/^([a-zA-Z]+)(\d+)$/', $b, $bMatches);
+
+            $aChar = $aMatches[1];
+            $aNum = $aMatches[2];
+            $bChar = $bMatches[1];
+            $bNum = $bMatches[2];
+
+            // membandingkan karakter
+            $charCmp = strcmp($aChar, $bChar);
+            if ($charCmp !== 0) {
+                return $charCmp;
+            }
+
+            // membandingkan angka
+            return $aNum - $bNum;
+        });
+
         $this->total = count($this->seats) * $this->price;
     }
     public function paramsUpdated($filmName, $price)

@@ -24,7 +24,7 @@
                     </div>
                     <div class="choosed d-flex ">
                         <div class="seat">
-                            <input type="checkbox" name="terpilih" id="terpilih" checked disabled>
+                            <input type="checkbox" checked disabled>
                             <label for="terpilih">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                         </div>
                         <div class="text-choosed">Dipilih</div>
@@ -32,7 +32,33 @@
                 </div>
             </div>
             <div class="row g-3 mb-3">
-                <div class="col-6">
+                @foreach ($seats->chunk(5) as $chunk)
+                    <div class="col-6">
+                        <div class="seats">
+                            @foreach ($chunk as $seat)
+                                @if ($seat->row . $seat->number === 'A1')
+                                    <div class="seat sold">
+                                        <input type="checkbox" name="{{ $seat->row }}{{ $seat->number }}"
+                                            id="{{ $seat->row }}{{ $seat->number }}"
+                                            value="{{ $seat->row }}{{ $seat->number }}" disabled>
+                                        <label
+                                            for="{{ $seat->row }}{{ $seat->number }}">{{ $seat->row }}{{ $seat->number }}</label>
+                                    </div>
+                                @else
+                                    <div class="seat">
+                                        <input type="checkbox" name="{{ $seat->row }}{{ $seat->number }}"
+                                            id="{{ $seat->row }}{{ $seat->number }}"
+                                            value="{{ $seat->row }}{{ $seat->number }}" wire:model='pickSeats'
+                                            wire:change='updateSeats'>
+                                        <label
+                                            for="{{ $seat->row }}{{ $seat->number }}">{{ $seat->row }}{{ $seat->number }}</label>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
+                {{-- <div class="col-6">
                     <div class="seats">
                         <div class="seat sold">
                             <input type="checkbox" name="A1" id="A1" value="A1" disabled>
@@ -136,7 +162,7 @@
                             <label for="B10">B10</label>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="row mb-5">
                 <div class="p-4 text-center text-white" style="background-color: #118EEA;">Layar Bioskop Disini</div>

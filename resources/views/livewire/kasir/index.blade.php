@@ -26,8 +26,10 @@
                                 style="border-radius: 20px">
                             {{-- <img src="" alt=""> --}}
                             <div class="image-caption">
-                                <p> S1 <button wire:click.prevent='pickSeat(1)'>13 : 05</button></p>
-                                <p> S2 <button wire:click.prevent='pickSeat(1)'>14:25</button> </p>
+                                <button wire:click.prevent='pickSeat(1)'> (S1) 13 : 05</button>
+                                <button wire:click.prevent='pickSeat(1)'> (S2) 14:25</button>
+                                <button wire:click.prevent='pickSeat(1)'> (S3) 15:10</button>
+                                <button wire:click.prevent='pickSeat(1)'> (SPremier) 16:25</button>
                             </div>
                         </div>
                         <div class="poster-title mt-3 ml-3">The Matrix: Resurrections</div>

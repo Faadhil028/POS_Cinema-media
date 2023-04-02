@@ -13,6 +13,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="">
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -91,9 +92,9 @@
                         <a class="block {{ request()->routeIs('admin.permissions.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                             href="{{ route('admin.permissions.index') }}">Permission</a>
                         <!-- <a class="block {{ request()->routeIs('admin.films.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                                                                                                                                                                                        href="{{ route('admin.films.index') }}">Film</a>
-                                                                                                                                                                                                    <a class="block {{ request()->routeIs('admin.genres.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                                                                                                                                                                                        href="{{ route('admin.genres.index') }}">Genre</a> -->
+                                                                                                                                                                                                            href="{{ route('admin.films.index') }}">Film</a>
+                                                                                                                                                                                                        <a class="block {{ request()->routeIs('admin.genres.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                                                                                                                                                                                            href="{{ route('admin.genres.index') }}">Genre</a> -->
                     </div>
                 @endrole
                 <div class="mt-10">
@@ -116,7 +117,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script> --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
+
 
     <script>
         function previewImage() {
