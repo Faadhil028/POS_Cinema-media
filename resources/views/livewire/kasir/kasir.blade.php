@@ -4,6 +4,9 @@
         <hr>
         <h1>Silahkan Pilih Film</h1>
     @else
+        <h1>{{ $studioName }} ({{ $studioClass }})</h1>
+        <p>{{ $date }}</p>
+        <p>{{ $time }}</p>
         <div class="card bg-dark p-2" style="border-radius: 10px">
             <table class="text-white">
                 <tbody>
@@ -59,7 +62,7 @@
                                 Rp
                                 <input type="number" class="form-control bg-transparent text-white" min="0"
                                     wire:model='amountPaid' wire:change='calculateChange'
-                                    oninput="validity.valid||(value=0);"
+                                    oninput="validity.valid||(value=0);" onclick="if(this.value=='0') this.value='';"
                                     value="{{ $amountPaid ? number_format($amountPaid) : 0 }}">
                             </p>
                         </th>

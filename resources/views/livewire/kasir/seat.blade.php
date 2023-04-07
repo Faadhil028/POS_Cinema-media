@@ -3,7 +3,7 @@
         style="border-radius: 20px; display : @if ($showSeat === true) block @else none @endif;">
         <div class="container py-5">
             <div class="row mb-5">
-                <h1>STUDIO 1</h1>
+                {{-- <h1>{{ $studio }}</h1> --}}
                 <div class="title">PILIH KURSI</div>
                 <div class="subtitle">Pilih kursi yang akan kamu tempati selama pemutaran film</div>
             </div>
@@ -32,32 +32,37 @@
                 </div>
             </div>
             <div class="row g-3 mb-3">
-                @foreach ($seats->chunk(5) as $chunk)
-                    <div class="col-6">
-                        <div class="seats">
-                            @foreach ($chunk as $seat)
-                                @if ($seat->row . $seat->number === 'A1')
-                                    <div class="seat sold">
-                                        <input type="checkbox" name="{{ $seat->row }}{{ $seat->number }}"
-                                            id="{{ $seat->row }}{{ $seat->number }}"
-                                            value="{{ $seat->row }}{{ $seat->number }}" disabled>
-                                        <label
-                                            for="{{ $seat->row }}{{ $seat->number }}">{{ $seat->row }}{{ $seat->number }}</label>
-                                    </div>
-                                @else
-                                    <div class="seat">
-                                        <input type="checkbox" name="{{ $seat->row }}{{ $seat->number }}"
-                                            id="{{ $seat->row }}{{ $seat->number }}"
-                                            value="{{ $seat->row }}{{ $seat->number }}" wire:model='pickSeats'
-                                            wire:change='updateSeats'>
-                                        <label
-                                            for="{{ $seat->row }}{{ $seat->number }}">{{ $seat->row }}{{ $seat->number }}</label>
-                                    </div>
-                                @endif
-                            @endforeach
+                @if ($seats)
+                    @foreach (collect($seats)->chunk(5) as $chunk)
+                        <div class="col-6">
+                            <div class="seats">
+                                @foreach ($chunk as $seat)
+                                    @if ($seat['row'] . $seat['number'] === 'A1')
+                                        <div class="seat sold">
+                                            <input type="checkbox" name="{{ $seat['row'] }}{{ $seat['number'] }}"
+                                                id="{{ $seat['row'] }}{{ $seat['number'] }}"
+                                                value="{{ $seat['row'] }}{{ $seat['number'] }}" disabled>
+                                            <label
+                                                for="{{ $seat['row'] }}{{ $seat['number'] }}">{{ $seat['row'] }}{{ $seat['number'] }}</label>
+                                        </div>
+                                    @else
+                                        <div class="seat">
+                                            <input type="checkbox" name="{{ $seat['row'] }}{{ $seat['number'] }}"
+                                                id="{{ $seat['row'] }}{{ $seat['number'] }}"
+                                                value="{{ $seat['row'] }}{{ $seat['number'] }}"
+                                                wire:model='pickSeats' wire:change='updateSeats'>
+                                            <label
+                                                for="{{ $seat['row'] }}{{ $seat['number'] }}">{{ $seat['row'] }}{{ $seat['number'] }}</label>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @else
+                    {{--  --}}
+                @endif
+
                 {{-- <div class="col-6">
                     <div class="seats">
                         <div class="seat sold">

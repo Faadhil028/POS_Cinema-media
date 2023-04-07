@@ -36,7 +36,7 @@
     </div>
 </div>
 
-<script>
+{{-- <script>
     var clock = document.getElementById('clock');
     var updateClock = function() {
         var date = new Date();
@@ -50,4 +50,4 @@
         clock.innerHTML = time;
     };
     setInterval(updateClock, 1000);
-</script>
+</script> --}}

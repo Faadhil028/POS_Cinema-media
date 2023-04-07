@@ -224,6 +224,7 @@ ol {
     width: 200px;
     height: 300px;
     position: absolute;
+    object-fit: cover;
 }
 
 .image-caption {

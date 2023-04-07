@@ -72,7 +72,7 @@
                 @yield('content')
             </div>
             <div class="col-lg-4 mt-1" style="border-radius: 20px">
-                @livewire('kasir.kasir', ['price' => $price, 'filmName' => $filmName])
+                @livewire('kasir.kasir', ['filmName' => $filmName])
             </div>
         </div>
     </div>
@@ -100,32 +100,22 @@
     </script>
     <script src="https://kit.fontawesome.com/2ef12236fc.js" crossorigin="anonymous"></script>
 
-    {{-- Sweet alert delete confirmation script --}}
+    {{-- Jam Sekarang --}}
     <script>
-        window.addEventListener('show-delete-confirm', event => {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Livewire.emit('deleteConfirmed')
-                }
-            })
-        })
-        window.addEventListener('couponDeleted', event => {
-            Swal.fire(
-                'Deleted!',
-                'Coupon list has been deleted.',
-                'success'
-            )
-        })
+        var clock = document.getElementById('clock');
+        var updateClock = function() {
+            var date = new Date();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            var time = hours + ':' + minutes + ':' + seconds;
+            clock.innerHTML = time;
+        };
+        setInterval(updateClock, 1000);
     </script>
-
     {{-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> --}}
 
 

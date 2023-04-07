@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire\Kasir;
 
+use Carbon\Carbon;
 use Livewire\Component;
 
 class Kasir extends Component
 {
     public $seats = [];
-    public $price, $filmName;
+    public $price = 0;
+    public $filmName, $studioName, $studioClass, $date, $time;
     public $total = 0;
 
     public $amountPaid = 0, $change = 0;
@@ -40,17 +42,20 @@ class Kasir extends Component
 
         $this->total = count($this->seats) * $this->price;
     }
-    public function paramsUpdated($filmName, $price)
+    public function paramsUpdated($timetable)
     {
-        $this->filmName = $filmName;
-        $this->price = $price;
+        $this->filmName = $timetable["film"]["title"];
+        $this->price = $timetable["studio"]["price"];
+        $this->studioName = $timetable["studio"]["name"];
+        $this->studioClass = $timetable["studio"]["class"];
+        $this->date = $timetable["date"];
+        $this->time = Carbon::parse($timetable["start_time"])->format('H:i:s');
     }
-    public function mount($price, $filmName)
+    public function mount($filmName)
     {
         $this->showCash = false;
         $this->showQris = false;
         $this->filmName = $filmName;
-        $this->price =  $price;
     }
     public function render()
     {
