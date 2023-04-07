@@ -20,7 +20,7 @@
         </div>
         <div class="container pt-3">
             <div class="row row-cols-4 g-4">
-                @foreach ($timetables as $timetable)
+                @forelse ($timetables as $timetable)
                     {{-- Tampilkan film jika status Currently Staring dan Hari yang sama dengan sekarang --}}
                     {{-- @if ($timetable->date == $dateNow) --}}
                     <div class="col d-flex justify-content-center">
@@ -62,7 +62,11 @@
                         </a>
                     </div>
                     {{-- @endif --}}
-                @endforeach
+                @empty
+                    <div class="d-flex align-items-center justify-content-center">
+                        <h1 class="text-center">Tidak Ditemukan</h1>
+                    </div>
+                @endforelse
             </div>
         </div>
     </div>

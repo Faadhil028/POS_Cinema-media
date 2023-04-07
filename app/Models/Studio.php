@@ -13,6 +13,6 @@ class Studio extends Model
 
     public function timetable()
     {
-        $this->hasMany(Timetable::class);
+        return $this->hasMany(Timetable::class);
     }
 }

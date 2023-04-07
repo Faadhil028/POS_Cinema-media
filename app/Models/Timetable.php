@@ -25,4 +25,9 @@ class Timetable extends Model
     {
         return $this->belongsTo(Film::class);
     }
+
+    public function transaction()
+    {
+        return $this->belongsToMany(Transaction::class, 'timetable_has_transaction', 'timetable_id', 'transaction_id');
+    }
 }

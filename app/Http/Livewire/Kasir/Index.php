@@ -40,6 +40,7 @@ class Index extends Component
 
         // dd($this->dateNow);
         if ($this->search) {
+            $this->genre = null;
             $timetables = Timetable::select('f.title', 'f.description', 'f.genre', 'f.tumbnail', 't.date', DB::raw("GROUP_CONCAT(DISTINCT CONCAT(t.id ,';', t.start_time,';',s.name)) as button"))
                 ->from('timetables as t')
                 ->join('films as f', 't.film_id', '=', 'f.id')
@@ -78,6 +79,7 @@ class Index extends Component
     // Action Untuk Genre
     public function filter($value)
     {
+        $this->search = null;
         $genres = Genre::where('id', $value)->get()->toArray();
         foreach ($genres as $genre) {
             $this->genre = $genre["name"];
@@ -91,12 +93,13 @@ class Index extends Component
     // Mengirimkan ID untuk menampilkan seat apa saja yang dimiliki film sesuai dengan jadwal/jam tayang pickSeat($param)
     public function pickSeat($id)
     {
-        $timetables = Timetable::with(['seat', 'film', 'studio'])->where('id', $id)->get();
+        $timetables = Timetable::with(['seat', 'film', 'studio', 'transaction'])->where('id', $id)->get();
         if ($timetables) {
             foreach ($timetables as $timetable) {
                 $this->timetable = $timetable;
             }
         }
+        // dd($timetables);
         // Mengirim ke Seat
         $this->showIndex = false;
         $this->emit('showSeat', $this->timetable);

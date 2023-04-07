@@ -1,9 +1,8 @@
-<div class="row">
+<div>
     <section id="choose-chair" class="bg-white p-3 col-lg"
         style="border-radius: 20px; display : @if ($showSeat === true) block @else none @endif;">
         <div class="container py-5">
             <div class="row mb-5">
-                {{-- <h1>{{ $studio }}</h1> --}}
                 <div class="title">PILIH KURSI</div>
                 <div class="subtitle">Pilih kursi yang akan kamu tempati selama pemutaran film</div>
             </div>
@@ -37,7 +36,7 @@
                         <div class="col-6">
                             <div class="seats">
                                 @foreach ($chunk as $seat)
-                                    @if ($seat['row'] . $seat['number'] === 'A1')
+                                    @if (in_array($seat['row'] . $seat['number'], $seatSold))
                                         <div class="seat sold">
                                             <input type="checkbox" name="{{ $seat['row'] }}{{ $seat['number'] }}"
                                                 id="{{ $seat['row'] }}{{ $seat['number'] }}"
@@ -60,121 +59,12 @@
                         </div>
                     @endforeach
                 @else
-                    {{--  --}}
+                    <h1>Kursi Belum Terdaftar</h1>
                 @endif
-
-                {{-- <div class="col-6">
-                    <div class="seats">
-                        <div class="seat sold">
-                            <input type="checkbox" name="A1" id="A1" value="A1" disabled>
-                            <label for="A1">A1</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="A2" id="A2" value="A2" wire:model='pickSeats'
-                                wire:change='updateSeats' hidden>
-                            <label for="A2">A2</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="A3" id="A3" value="A3" wire:model='pickSeats'
-                                wire:change='updateSeats' hidden>
-                            <label for="A3">A3</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="A4" id="A4" value="A4" wire:model='pickSeats'
-                                wire:change='updateSeats' hidden>
-                            <label for="A4">A4</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="A5" id="A5" value="A5" wire:model='pickSeats'
-                                wire:change='updateSeats' hidden>
-                            <label for="A5">A5</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="seats">
-                        <div class="seat">
-                            <input type="checkbox" name="A6" id="A6" value="A6">
-                            <label for="A6">A6</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="A7" id="A7" value="A7">
-                            <label for="A7">A7</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="A8" id="A8" value="A8">
-                            <label for="A8">A8</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="A9" id="A9" value="A9">
-                            <label for="A9">A9</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="A10" id="A10" value="A10">
-                            <label for="A10">A10</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="seats">
-                        <div class="seat">
-                            <input type="checkbox" name="B1" id="B1"
-                                value="B1"wire:model='pickSeats' wire:change='updateSeats' hidden>
-                            <label for="B1">B1</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="B2" id="B2" value="B2"
-                                wire:model='pickSeats' wire:change='updateSeats' hidden>
-                            <label for="B2">B2</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="B3" id="B3" value="B3"
-                                wire:model='pickSeats' wire:change='updateSeats' hidden>
-                            <label for="B3">B3</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="B4" id="B4" value="B4"
-                                wire:model='pickSeats' wire:change='updateSeats' hidden>
-                            <label for="B4">B4</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="B5" id="B5" value="B5"
-                                wire:model='pickSeats' wire:change='updateSeats' hidden>
-                            <label for="B5">B5</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="seats">
-                        <div class="seat">
-                            <input type="checkbox" name="B6" id="B6" value="B6">
-                            <label for="B6">B6</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="B7" id="B7" value="B7">
-                            <label for="B7">B7</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="B8" id="B8" value="B8">
-                            <label for="B8">B8</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="B9" id="B9" value="B9">
-                            <label for="B9">B9</label>
-                        </div>
-                        <div class="seat">
-                            <input type="checkbox" name="B10" id="B10" value="B10">
-                            <label for="B10">B10</label>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
             <div class="row mb-5">
                 <div class="p-4 text-center text-white" style="background-color: #118EEA;">Layar Bioskop Disini</div>
             </div>
         </div>
     </section>
-    {{-- <div class="col-lg-4 mt-1" style="border-radius: 20px">
-        @livewire('kasir.kasir', ['price' => $price])
-    </div> --}}
 </div>
