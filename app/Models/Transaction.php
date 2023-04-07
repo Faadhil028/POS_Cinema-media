@@ -10,6 +10,19 @@ class Transaction extends Model
     use HasFactory;
 
     protected $table = 'transactions';
+    public $timestamps = false;
+    protected $fillable = [
+        "user_id",
+        "timetable_id",
+        "invoice_code",
+        "date",
+        "quantity",
+        "unit_price",
+        "cash",
+        "return",
+        "total",
+        "payment_method",
+    ];
 
     public function transaction_detail()
     {

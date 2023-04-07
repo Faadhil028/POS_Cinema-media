@@ -10,7 +10,16 @@ class Transaction_detail extends Model
     use HasFactory;
 
     protected $table = 'transaction_detail';
-    protected $guarded = [];
+    public $timestamps = false;
+
+    protected $fillable = [
+        "transaction_id",
+        "film",
+        "studio",
+        "seat",
+        "start_time",
+        "trasaction_time",
+    ];
 
     public function transaction()
     {

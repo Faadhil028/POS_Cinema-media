@@ -65,8 +65,6 @@ class Index extends Component
                 ->join('studios as s', 't.studio_id', '=', 's.id')
                 ->groupBy('f.title', 'f.description', 'f.genre', 'f.tumbnail', 't.date')
                 ->get();
-
-            // dd($timetables);
         }
 
         $genres = Genre::where('is_active', 1)->get();
@@ -99,13 +97,11 @@ class Index extends Component
                 $this->timetable = $timetable;
             }
         }
-        // dd($timetables);
         // Mengirim ke Seat
         $this->showIndex = false;
         $this->emit('showSeat', $this->timetable);
 
         // Mengirim data ke Layout Kasir
         $this->emit('updateParams', $this->timetable);
-        // return redirect(route('pos.seat'));
     }
 }

@@ -29,6 +29,14 @@
                 </tbody>
             </table>
         </div>
+        @error('seats')
+            <div class="alert alert-warning alert-warning fade show mt-2" role="alert">
+                {{ $message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @enderror
         <div class="card bg-dark p-2 mt-3" style="border-radius: 10px">
             <table class="text-white">
                 <tbody>
@@ -67,6 +75,14 @@
                             </p>
                         </th>
                     </tr>
+                    @error('amountPaid')
+                        <div class="alert alert-warning alert-warning fade show mt-2" role="alert">
+                            {{ $message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @enderror
                     <tr>
                         <th>Uang Kembalian</th>
                         <th> </th>
@@ -86,6 +102,14 @@
             <button class="p-2"
                 style="width:100px; border: 1px solid black; border-radius: 15px; @if ($showQris) background-color: #343A40; color: white; @else  background-color: white; @endif"
                 wire:click='showQris'>Qris</button>
+            @error('method')
+                <div class="alert alert-warning alert-warning fade show mt-2" role="alert">
+                    {{ $message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @enderror
         </div>
         <div class="p-2
             d-block mt-3" style="border-radius: 10px;">
