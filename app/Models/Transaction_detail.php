@@ -18,7 +18,7 @@ class Transaction_detail extends Model
         "studio",
         "seat",
         "start_time",
-        "trasaction_time",
+        "transaction_time",
     ];
 
     public function transaction()

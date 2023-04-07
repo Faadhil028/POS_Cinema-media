@@ -136,6 +136,7 @@ class Kasir extends Component
         $lastId = Transaction::orderBy("date", "desc")->value("id");
         $seats = implode(',', $this->seats);
 
+        // dd($dateNow);
         // Create Data Transaction_detail
         $dataTDetail = [
             "transaction_id" => $lastId,
