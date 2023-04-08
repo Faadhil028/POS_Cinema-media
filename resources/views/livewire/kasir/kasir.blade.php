@@ -168,7 +168,7 @@
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Transaction success',
+                title: 'Transaksi Berhasil',
                 showConfirmButton: false,
                 timer: 1500
             }).then(() => {

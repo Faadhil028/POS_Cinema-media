@@ -1,3 +1,3 @@
 <x-admin-layout>
-    <h1>Ini page Transaksi</h1>
+    <livewire:transaction.index>
 </x-admin-layout>
