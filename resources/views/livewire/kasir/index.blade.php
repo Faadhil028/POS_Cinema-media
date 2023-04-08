@@ -22,7 +22,7 @@
             <div class="row row-cols-4 g-4">
                 @forelse ($timetables as $timetable)
                     {{-- Tampilkan film jika status Currently Staring dan Hari yang sama dengan sekarang --}}
-                    {{-- @if ($timetable->date == $dateNow) --}}
+                    {{-- @if ($timetable->date == $dateNow && $timetable->status == 'CURRENTLY AIRING') --}}
                     <div class="col d-flex justify-content-center">
                         <a href="" class="text-decoration-none text-dark">
                             <div class="image-container">
@@ -61,6 +61,10 @@
                             <div class="poster-title mt-3 ml-3">{{ $timetable->title }}</div>
                         </a>
                     </div>
+                    {{-- @else
+                        <div class="d-none d-lg-block">
+                            <p>Ini adalah sebuah teks dalam div yang hanya muncul pada tampilan desktop.</p>
+                        </div> --}}
                     {{-- @endif --}}
                 @empty
                     <div class="d-flex align-items-center justify-content-center">

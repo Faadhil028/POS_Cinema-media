@@ -36,34 +36,34 @@ class Index extends Component
         // Date Now
         $this->dateNow = Carbon::now()->locale('id')->isoFormat('YYYY-MM-DD');
         // Date Dummy agar tampil
-        // $this->dateNow = Carbon::now()->locale('id')->isoFormat('YYYY-MM-06');
+        // $this->dateNow = Carbon::now()->locale('id')->isoFormat('YYYY-MM-04');
 
         // dd($this->dateNow);
         if ($this->search) {
             $this->genre = null;
-            $timetables = Timetable::select('f.title', 'f.description', 'f.genre', 'f.tumbnail', 't.date', DB::raw("GROUP_CONCAT(DISTINCT CONCAT(t.id ,';', t.start_time,';',s.name)) as button"))
+            $timetables = Timetable::select('f.title', 'f.description', 'f.genre', 'f.tumbnail', 'f.status', 't.date', DB::raw("GROUP_CONCAT(DISTINCT CONCAT(t.id ,';', t.start_time,';',s.name)) as button"))
                 ->from('timetables as t')
                 ->join('films as f', 't.film_id', '=', 'f.id')
                 ->join('studios as s', 't.studio_id', '=', 's.id')
                 ->where('f.title', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('f.genre', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('f.description', 'LIKE', '%' . $this->search . '%')
-                ->groupBy('f.title', 'f.description', 'f.genre', 'f.tumbnail', 't.date')
+                ->groupBy('f.title', 'f.description', 'f.genre', 'f.tumbnail', 'f.status', 't.date')
                 ->get();
         } elseif ($this->genre) {
-            $timetables = Timetable::select('f.title', 'f.description', 'f.genre', 'f.tumbnail', 't.date', DB::raw("GROUP_CONCAT(DISTINCT CONCAT(t.id ,';', t.start_time,';',s.name)) as button"))
+            $timetables = Timetable::select('f.title', 'f.description', 'f.genre', 'f.tumbnail', 'f.status', 't.date', DB::raw("GROUP_CONCAT(DISTINCT CONCAT(t.id ,';', t.start_time,';',s.name)) as button"))
                 ->from('timetables as t')
                 ->join('films as f', 't.film_id', '=', 'f.id')
                 ->join('studios as s', 't.studio_id', '=', 's.id')
                 ->where('f.genre', 'LIKE', '%' . $this->genre . '%')
-                ->groupBy('f.title', 'f.description', 'f.genre', 'f.tumbnail', 't.date')
+                ->groupBy('f.title', 'f.description', 'f.genre', 'f.tumbnail', 'f.status', 't.date')
                 ->get();
         } else {
-            $timetables = Timetable::select('f.title', 'f.description', 'f.genre', 'f.tumbnail', 't.date', DB::raw("GROUP_CONCAT(DISTINCT CONCAT(t.id ,';', t.start_time,';',s.name)) as button"))
+            $timetables = Timetable::select('f.title', 'f.description', 'f.genre', 'f.tumbnail', 'f.status', 't.date', DB::raw("GROUP_CONCAT(DISTINCT CONCAT(t.id ,';', t.start_time,';',s.name)) as button"))
                 ->from('timetables as t')
                 ->join('films as f', 't.film_id', '=', 'f.id')
                 ->join('studios as s', 't.studio_id', '=', 's.id')
-                ->groupBy('f.title', 'f.description', 'f.genre', 'f.tumbnail', 't.date')
+                ->groupBy('f.title', 'f.description', 'f.genre', 'f.tumbnail', 'f.status', 't.date')
                 ->get();
         }
 
