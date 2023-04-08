@@ -74,8 +74,7 @@
                         </div>
                         <div class="mb-3">
                             <label class=" dark:text-white text-base" for="tumbnail">Tumbnail</label>
-                            <img class="img-preview">
-                            {{-- <img class="img-preview img-fluid mb-3 col-sm-5"> --}}
+                            <img class="img-preview mb-3 mt-3">
                             <input
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none
                             dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 @error('tumbnail') is-invalid @enderror"
