@@ -7,7 +7,6 @@ use App\Models\Transaction_detail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Illuminate\Validation\Rule;
 
 class Kasir extends Component
 {
@@ -62,11 +61,18 @@ class Kasir extends Component
     {
         $this->timetableId = $timetable["id"];
         $this->filmName = $timetable["film"]["title"];
-        $this->price = $timetable["studio"]["price"];
         $this->studioName = $timetable["studio"]["name"];
         $this->studioClass = $timetable["studio"]["class"];
-        $this->date = $timetable["date"];
+        $this->date = Carbon::parse($timetable["date"])->locale('id')->isoFormat('dddd, D MMMM YYYY');
         $this->time = Carbon::parse($timetable["start_time"])->format('H:i:s');
+
+        // Mengetahui harga Weekend atau Tidak
+        $weekCek = Carbon::parse($timetable["date"]);
+        if ($weekCek->isWeekend()) {
+            $this->price = $timetable["studio"]["weekend_price"];
+        } else {
+            $this->price = $timetable["studio"]["price"];
+        }
     }
     public function mount($filmName)
     {
@@ -103,7 +109,10 @@ class Kasir extends Component
 
     public function store()
     {
+
         $this->validate();
+
+        // Membuat Invoice Code
         $lastRecord = Transaction::orderBy("date", 'desc')->first();
         if ($lastRecord && strpos($lastRecord->invoice_code, Carbon::now()->format('dmY')) !== false) {
             $number = (int) substr($lastRecord->invoice_code, -4) + 1;
@@ -128,15 +137,37 @@ class Kasir extends Component
             "total" => $this->total,
             "payment_method" => $this->method,
         ];
-        Transaction::create($dataTransaction);
-        // Untuk Many to Many mengirim data ke timetables_has_transaction
-        // $transaction = Transaction::create($dataTransaction);
-        // $transaction->timetable()->attach($this->timetableId);
 
+        // Membuat data Transaction
+        $transaction = Transaction::create($dataTransaction);
+
+        // Mencari Row dan Number
+        $seatsArray = $this->seats;
+
+        $rows = array();
+        $numbers = array();
+
+        foreach ($seatsArray as $seat) {
+            $row = substr($seat, 0, 1);
+            $number = substr($seat, 1);
+
+            array_push($rows, $row);
+            array_push($numbers, $number);
+        }
+
+        // Mencari id seat
+        $seatId = \App\Models\Seat::whereIn('row', $rows)->whereIn('number', $numbers)->pluck('id');
+
+        // Memasukkan setiap seat_id terpilih ke timetable_has_transaction
+        foreach (collect($seatId) as $seat_id) {
+            $transaction->timetable()->attach($this->timetableId, ['seat_id' => $seat_id]);
+        }
+
+
+        // Memasukkan data ke Transaction Detail
         $lastId = Transaction::orderBy("date", "desc")->value("id");
         $seats = implode(',', $this->seats);
 
-        // dd($dateNow);
         // Create Data Transaction_detail
         $dataTDetail = [
             "transaction_id" => $lastId,
@@ -147,5 +178,8 @@ class Kasir extends Component
             "transaction_time" => $dateNow,
         ];
         Transaction_detail::create($dataTDetail);
+
+        // Memunculkan Modal transaksi Success
+        $this->dispatchBrowserEvent('show-swal');
     }
 }

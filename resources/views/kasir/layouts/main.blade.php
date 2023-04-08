@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
 
+    {{-- <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet"> --}}
+
     <!-- Custom styles for this template -->
     {{-- <link href="/css/dashboard.css" rel="stylesheet"> --}}
 
@@ -91,7 +93,9 @@
         integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
     </script>
     {{-- <script src="/js/dashboard.js"></script> --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script> --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 
 
 
@@ -116,6 +120,7 @@
         };
         setInterval(updateClock, 1000);
     </script>
+    @stack('js')
     {{-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> --}}
 
 

@@ -20,9 +20,7 @@
                             <th>Kursi (x{{ count($seats) }})</th>
                             <th> </th>
                             <th>
-                                @foreach ($seats as $seat)
-                                    {{ $seat }}
-                                @endforeach
+                                {{ implode(', ', $seats) }}
                             </th>
                         </tr>
                     @endif
@@ -116,4 +114,68 @@
             <button class="btn btn-dark form-control" wire:click='store'>Order</button>
         </div>
     @endif
+
+    {{-- Modal --}}
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Deskripsi</h1>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body">
+                    <table class="table table-borderless ml-5 col-lg-6">
+                        <thead>
+                            <tr>
+                                <th>Film</th>
+                                <th>:</th>
+                                <th>{{ $filmName }}</th>
+                            </tr>
+                            <tr>
+                                <th>Date</th>
+                                <th>:</th>
+                                <th>{{ $date }}</th>
+                            </tr>
+                            <tr>
+                                <th>Row</th>
+                                <th>:</th>
+                                <th>
+                                    {{ implode(', ', $seats) }}
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Quantity</th>
+                                <th>:</th>
+                                <th>{{ count($seats) }}</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
+                    <button type="button" class="btn btn-dark">Print Ticket</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@push('js')
+    <script>
+        window.addEventListener('show-swal', event => {
+            // Tampilkan SweetAlert ketika tombol diklik
+            // alert('Name updated to: ');
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Transaction success',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                // Kode untuk memunculkan modal lain
+                // Contoh:
+                $('#myModal').modal('show');
+            });
+        });
+    </script>
+@endpush
