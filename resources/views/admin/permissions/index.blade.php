@@ -41,7 +41,7 @@
                         </div>
                         <div class="pt-4 px-4">
                             <a href="{{ route('admin.permissions.create') }}"
-                                class="px-4 py-2 bg-sky-500 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">Create
+                                class="px-4 py-2 bg-sky-500 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">Add
                                 Permissions</a>
                         </div>
                     </div>
@@ -84,11 +84,10 @@
                                             <!-- <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a> -->
                                             <form method="POST"
                                                 action="{{ route('admin.permissions.destroy', $permission->id) }}"
-                                                onsubmit="return confirm('Are you sure?');"
                                                 class="px-1 font-medium text-sky-500 hover:underline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit">
+                                                <button type="submit" class="delete-btn">
                                                     Delete
                                                 </button>
                                             </form>

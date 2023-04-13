@@ -1,11 +1,6 @@
 <x-admin-layout>
     <div class="py-12 w-full">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="ml-4">
-                <a href="{{ route('admin.roles.index') }}"
-                    class="px-4 py-2 bg-sky-500 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">Index
-                    Roles</a>
-            </div>
             <h1 class="uppercase text-2xl font-semibold tracking-widest text-white ml-4 mt-10">add roles</h1>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
@@ -38,12 +33,16 @@
                                 @endforeach
                             </div>
                         @endforeach
-                        <div class="flex items-center justify-end mt-4">
-                            <button type="submit"
-                                class="p-2 bg-sky-500 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">
-                                Add Roles
-                            </button>
-                        </div>
+                        <div class="flex justify-end items-center mt-4">
+                            <div class="mr-4 px-4 py-1 bg-rose-400 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">
+                                        <a href="{{ route('admin.roles.index') }}"
+                                            class="">Cancel</a>
+                                </div>
+                                <button type="submit"
+                                            class="px-4 py-1 bg-sky-500 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">
+                                            Submit
+                                </button>
+                            </div>
                     </form>
                 </div>
             </div>
@@ -55,6 +54,42 @@
     crossorigin="anonymous"></script>
 <script>
     @foreach ($tables as $table)
+        var tbClass = $(`.{{ $table }}`);
+        var allChecked = tbClass.length === tbClass.filter(":checked").length;
+
+        // Ketika semua tercentang maka label judul akan checked (belum bisa jalan)
+        // ketika salah satu tidak tercentang label judul tidak akan checked
+        // tbClass.each(function(event) {
+        //     $(this).on("click", function() {
+        //         if (this.checked) {
+        //             if (allChecked) {
+        //                 $(`.check_all_{{ $table }}`).each(function() {
+        //                     this.checked = true;
+        //                 })
+        //             }
+        //         } else {
+        //             $(`.check_all_{{ $table }}`).each(function() {
+        //                 this.checked = false;
+        //             })
+        //         }
+        //     })
+        // })
+
+
+        tbClass.click(function(event) {
+            if (this.checked) {
+                if (allChecked) {
+                    $(`.check_all_{{ $table }}`).each(function() {
+                        this.checked = true;
+                    })
+                }
+            } else {
+                $(`.check_all_{{ $table }}`).each(function() {
+                    this.checked = false;
+                })
+            }
+        })
+
         $(`.check_all_{{ $table }}`).click(function(event) {
             if (this.checked) {
                 // Iterate each checkbox
