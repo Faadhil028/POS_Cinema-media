@@ -1,6 +1,6 @@
 <div class="py-12 w-full">
     <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
-        <h1 class="uppercase text-2xl font-semibold tracking-widest text-white ml-4 mt-10">add film</h1>
+        <h1 class="uppercase text-2xl font-semibold tracking-widest text-white ml-4 mt-10">add Schedule</h1>
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
 
