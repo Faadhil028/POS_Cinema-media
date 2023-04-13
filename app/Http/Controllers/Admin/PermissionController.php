@@ -8,11 +8,16 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $permissions = Permission::all();
+        if ($request->has('search')) {
+            $permissions = Permission::where('name', 'LIKE', '%' . $request->search . '%')->paginate(10);
+        } else {
+            $permissions = Permission::paginate(10);
+        }
         return view('admin.permissions.index', compact('permissions'));
     }
+
     public function create()
     {
         return view('admin.permissions.create');
@@ -37,5 +42,11 @@ class PermissionController extends Controller
         $permission->update($validated);
 
         return to_route('admin.permissions.index');
+    }
+
+    public function destroy(Permission $permission)
+    {
+        $permission->delete();
+        return back()->with('message', 'Permission deleted.');
     }
 }
