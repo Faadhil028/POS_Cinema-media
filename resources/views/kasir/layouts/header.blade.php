@@ -1,6 +1,6 @@
 <div class="row">
     <header class="navbar navbar-dark sticky-top col-lg-8 bg-dark flex-md-nowrap p-0 mb-2">
-        <div class="d-flex flex-row justify-content-around mb-3">
+        <div class="d-flex flex-row justify-content-between mb-3">
             <div class="p-2 mr-3">
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +10,7 @@
                     @include('kasir.layouts.sidebar')
                 </div>
             </div>
-            <div class="p-2">
+            <div class="text-center">
                 <h2><a class="navbar-brand" href="{{ route('pos.film') }}">SOC MOVIE</a></h2>
             </div>
         </div>

@@ -3,10 +3,10 @@
         style="border-radius: 20px; height: 100vh; display : @if ($showIndex === true) block @else none @endif;">
         <div class="d-flex justify-content-between">
             <div class="p-2">
-                <button class="btn {{ $this->genre === null ? 'btn-info' : 'btn-dark' }}" style="border-radius: 10px"
+                <button class="btn {{ $this->genre === null ? 'btn-secondary' : 'btn-dark' }}" style="border-radius: 10px"
                     wire:click.prevent='resetFilter()'>All</button>
                 @foreach ($genres as $genre)
-                    <button class="btn {{ $this->genre === $genre->name ? 'btn-info' : 'btn-dark' }}"
+                    <button class="btn {{ $this->genre === $genre->name ? 'btn-secondary' : 'btn-dark' }}"
                         style="border-radius: 10px"
                         wire:click.prevent='filter({{ $genre->id }})'>{{ $genre->name }}</button>
                 @endforeach

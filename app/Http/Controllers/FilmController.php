@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Str;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Models\Genre;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Str;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class FilmController extends Controller
 {

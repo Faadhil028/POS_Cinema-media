@@ -4,15 +4,16 @@
     @if ($filmName == ' ')
         <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
             <div class="text-center">
+                <i class="bi bi-basket-fill display-2"></i>
                 <h2>Pesanan Anda Kosong</h2>
-                <p>Silahkan pilih film untuk order lebih lanjut</p>
+                <p>Silahkan pilih film untuk pesan lebih lanjut</p>
             </div>
         </div>
     @else
-        <h4>{{ $studioName }} ({{ $studioClass }})</h4>
-        <p>Date : {{ $date }}</p>
-        <p>Time : {{ \Carbon\Carbon::parse($time)->format('H:i') }}</p>
-        <div class="card bg-dark p-2" style="border-radius: 10px">
+        <h3>{{ $studioName }} ({{ $studioClass }})</h3>
+        {{-- <p>Date : {{ $date }}</p>
+        <p>Time : {{ \Carbon\Carbon::parse($time)->format('H:i') }}</p> --}}
+        <div class="card bg-dark p-2 mt-3" style="border-radius: 10px">
             <table class="text-white">
                 <tbody>
                     <tr>
@@ -28,7 +29,24 @@
                                 {{ implode(', ', $seats) }}
                             </th>
                         </tr>
+                        {{-- @else
+                        <tr>
+                            <th>Kursi (x0)</th>
+                            <th> </th>
+                            <th>
+                            </th>
+                        </tr> --}}
                     @endif
+                    <tr>
+                        <th>Date</th>
+                        <th> </th>
+                        <th> {{ $date }}</th>
+                    </tr>
+                    <tr>
+                        <th>Time</th>
+                        <th> </th>
+                        <th> {{ \Carbon\Carbon::parse($time)->format('H:i') }}</th>
+                    </tr>
                 </tbody>
             </table>
         </div>
