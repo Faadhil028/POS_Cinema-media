@@ -14,13 +14,14 @@ class FilmController extends Controller
 {
     public function index()
     {
+        $this->authorize('read.film');
         $films = Film::all();
         return view('films.index', ['films' => $films]);
     }
 
     public function create()
     {
-
+        $this->authorize('create.film');
         //Fetch active genre
         $genres = Genre::where('is_active', 1)->get();
         return view('films.create', ['genres' => $genres]);
@@ -78,6 +79,7 @@ class FilmController extends Controller
 
     public function edit(Film $film)
     {
+        $this->authorize('update.film');
         $genres = Genre::where('is_active', 1)->get();
         $genreList = Film::find($film->id)->genres;
         $start_date_carbon = Carbon::parse($film->start_date)->format('Y-m-d');

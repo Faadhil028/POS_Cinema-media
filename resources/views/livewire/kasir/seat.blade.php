@@ -1,6 +1,6 @@
 <div>
     <section id="choose-chair" class="bg-white p-3 col-lg"
-        style="border-radius: 20px; display : @if ($showSeat === true) block @else none @endif;">
+        style="border-radius: 20px; height:100vh; display : @if ($showSeat === true) block @else none @endif;">
         <div class="container py-5">
             <div class="row mb-5">
                 <div class="title">PILIH KURSI</div>
