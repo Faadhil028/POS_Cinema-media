@@ -68,10 +68,16 @@
                         <!-- <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
                             {{ __('Already registered?') }}
                         </a> -->
-
-                        <x-primary-button class="ml-4">
-                            {{ __('Update') }}
-                        </x-primary-button>
+                    <div class="flex justify-end items-center mt-4">
+                            <div class="mr-4 px-4 py-1 bg-rose-400 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">
+                                    <a href="{{ route('admin.users.index') }}"
+                                        class="">Cancel</a>
+                            </div>
+                            <button type="submit"
+                                        class="px-4 py-1 bg-sky-500 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">
+                                        Submit
+                            </button>
+                    </div>
                     </div>
                 </form>
             </div>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Film extends Model
 {
@@ -12,17 +13,19 @@ class Film extends Model
     //bypass mass assignment rule
     protected $guarded = [];
 
-    protected $primaryKey = 'id';
+    protected $dates = ['start_date', 'end_date'];
 
-    //Make an Alias of a column
-    // public function getDurationAttribute($value){
-    //     return $this->attributes['duration(m)'];
-    // }
+    protected $primaryKey = 'id';
 
     //ignore timestamps
     public $timestamps = false;
 
-    public function genres(){
-        return $this->belongsToMany(Genre::class,'films_has_genres','films_id','genres_id');
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class, 'films_has_genres', 'films_id', 'genres_id');
+    }
+    public function timetable()
+    {
+        return $this->hasMany(Timetable::class);
     }
 }

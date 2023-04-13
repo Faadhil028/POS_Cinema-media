@@ -16,6 +16,7 @@
             <div class="hidden space-x-8 sm:-my-px sm:ml-20 sm:flex">
                 <x-nav-link :href="route('pos.film')" :active="request()->routeIs('dashboard')">
                     {{ __('POS Dashboard') }}
+>>>>>>>>> Temporary merge branch 2
                 </x-nav-link>
                 {{-- @role('admin') --}}
                 <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">

@@ -55,16 +55,16 @@
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $user->name }}
                                     </th>
-                                    <th>
+                                    <th class="px-6 py-4">
                                         {{ $user->email }}
                                     </th>
-                                    <th>
+                                    <th class="px-6 py-4">
                                         {{ $user->email_verified_at }}
                                     </th>
-                                    <th>
+                                    <th class="px-6 py-4">
                                         {{ $user->created_at }}
                                     </th>
-                                    <th>
+                                    <th class="px-6 py-4">
                                         {{ $user->updated_at }}
                                     </th>
                                     <td class="px-6 py-4">
@@ -74,11 +74,10 @@
                                             /
                                             <!-- <a href="#" class="font-medium text-sky-500 hover:underline">Delete</a> -->
                                             <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}"
-                                                onsubmit="return confirm('Are you sure?');"
                                                 class="px-1 font-medium text-sky-500 hover:underline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit">
+                                                <button type="submit" class="delete-btn">
                                                     Delete
                                                 </button>
                                             </form>
