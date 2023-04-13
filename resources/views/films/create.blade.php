@@ -88,10 +88,10 @@
                         <div class="mb-3">
                             <label class="dark:text-white text-base" for="status">Status</label><br>
                             <select name="status" id="status"
-                                class="block w-full rounded-md bg-gray-900 dark:text-gray-400 @error('status') is-invalid @enderror">
-                                <option value="COMING SOON" selected>COMING SOON</option>
-                                <option value="CURRENTLY AIRING">CURRENTLY AIRING</option>
-                                <option value="ENDED">ENDED</option>
+                                class="block w-full rounded-md text-black bg-white dark:text-gray-900 @error('status') is-invalid @enderror">
+                                <option value="COMING SOON" selected class="hover:bg-slate-600">COMING SOON</option>
+                                <option value="CURRENTLY AIRING" class="hover:bg-slate-600">CURRENTLY AIRING</option>
+                                <option value="ENDED" class="hover:bg-slate-600">ENDED</option>
                             </select>
                             @error('status')
                                 <div class="text-danger">{{ $message }}</div>
