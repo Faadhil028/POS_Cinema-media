@@ -15,7 +15,7 @@ class Seat extends Component
     public $seatSold = [];
     public $transactionId, $timetableId;
 
-    protected $listeners = ['showSeat' => 'showSeatComponent'];
+    protected $listeners = ['showSeat' => 'showSeatComponent', "resetSeat" => "resetSeat"];
     public function render()
     {
         // dd($this->seatSold);
@@ -52,5 +52,10 @@ class Seat extends Component
     public function updateSeats()
     {
         $this->emit('updatedSeats', $this->pickSeats);
+    }
+
+    public function resetSeat()
+    {
+        $this->reset('pickSeats');
     }
 }
