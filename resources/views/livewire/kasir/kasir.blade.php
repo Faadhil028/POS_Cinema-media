@@ -1,12 +1,17 @@
-<div class="p-3 bg-white" style="border-radius: 20px">
+<div class="p-3 bg-white" style="border-radius: 20px; height:100vh">
+    <h3>Daftar Pesanan</h3>
+    <hr>
     @if ($filmName == ' ')
-        <h3>Daftar Pesanan</h3>
-        <hr>
-        <h1>Silahkan Pilih Film</h1>
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+            <div class="text-center">
+                <h2>Pesanan Anda Kosong</h2>
+                <p>Silahkan pilih film untuk order lebih lanjut</p>
+            </div>
+        </div>
     @else
-        <h1>{{ $studioName }} ({{ $studioClass }})</h1>
-        <p>{{ $date }}</p>
-        <p>{{ $time }}</p>
+        <h4>{{ $studioName }} ({{ $studioClass }})</h4>
+        <p>Date : {{ $date }}</p>
+        <p>Time : {{ \Carbon\Carbon::parse($time)->format('H:i') }}</p>
         <div class="card bg-dark p-2" style="border-radius: 10px">
             <table class="text-white">
                 <tbody>
@@ -93,8 +98,8 @@
             style="border-radius: 10px; display : @if ($showQris === true) block @else none @endif;">
             <h1>Ini QRIS</h1>
         </div>
-        <div class="p-2 d-block mt-3" style="border-radius: 10px;">
-            <button class="p-2"
+        <div class="p-2 d-flex justify-content-center mt-3" style="border-radius: 10px;">
+            <button class="p-2 mr-2"
                 style="width:100px; border: 1px solid black; border-radius: 15px; @if ($showCash) background-color: #343A40; color: white; @else  background-color: white; @endif"
                 wire:click='showCash'>Cash</button>
             <button class="p-2"
@@ -110,8 +115,12 @@
             @enderror
         </div>
         <div class="p-2
-            d-block mt-3" style="border-radius: 10px;">
-            <button class="btn btn-dark form-control" wire:click='store'>Order</button>
+            d-flex justify-content-center mt-3">
+            <button class="btn btn-warning form-control mr-2" style="width:75%; border-radius:15px"
+                wire:click='resetField'>Reset</button>
+            <button class="btn btn-dark form-control" style="width:75%; border-radius:15px"
+                wire:click='store'>Order</button>
+
         </div>
     @endif
 
@@ -153,7 +162,8 @@
                 </div>
                 <div class="modal-footer">
                     {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-                    <button type="button" class="btn btn-dark">Print Ticket</button>
+                    <a href="{{ route('pos.ticket', $tdetail_id) }}" class="btn btn-dark">Print
+                        Ticket</a>
                 </div>
             </div>
         </div>
@@ -164,7 +174,6 @@
     <script>
         window.addEventListener('show-swal', event => {
             // Tampilkan SweetAlert ketika tombol diklik
-            // alert('Name updated to: ');
             Swal.fire({
                 position: 'center',
                 icon: 'success',
@@ -173,7 +182,6 @@
                 timer: 1500
             }).then(() => {
                 // Kode untuk memunculkan modal lain
-                // Contoh:
                 $('#myModal').modal('show');
             });
         });

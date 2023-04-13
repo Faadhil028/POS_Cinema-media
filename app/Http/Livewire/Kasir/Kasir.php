@@ -2,17 +2,20 @@
 
 namespace App\Http\Livewire\Kasir;
 
-use App\Models\Transaction;
-use App\Models\Transaction_detail;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Models\Transaction;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Transaction_detail;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class Kasir extends Component
 {
     public $seats = [];
     public $price = 0;
     public $filmName, $studioName, $studioClass, $date, $time, $timetableId, $method;
+    public $tdetail_id = 0;
     public $total = 0;
 
     public $amountPaid = 0, $change = 0;
@@ -107,6 +110,12 @@ class Kasir extends Component
         $this->showQris = true;
     }
 
+    public function resetField()
+    {
+        $this->reset('total', 'seats', 'amountPaid', 'change');
+        $this->emit('resetSeat');
+    }
+
     public function store()
     {
 
@@ -178,6 +187,8 @@ class Kasir extends Component
             "transaction_time" => $dateNow,
         ];
         Transaction_detail::create($dataTDetail);
+        $this->tdetail_id = Transaction_detail::orderBy("transaction_time", "desc")->value("id");
+
 
         // Memunculkan Modal transaksi Success
         $this->dispatchBrowserEvent('show-swal');
