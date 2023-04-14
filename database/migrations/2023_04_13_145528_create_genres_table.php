@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('genres', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->string('name', 45);
+            $table->string('name', 45)->unique();
             $table->tinyInteger('is_active')->default(1);
         });
     }
