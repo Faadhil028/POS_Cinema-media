@@ -42,14 +42,14 @@
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $genre->name }}</th>
-                                    <th>
+                                    <th class="px-6">
                                         @if ($genre->is_active == 1)
                                             Active
                                         @else
                                             Not Active
                                         @endif
                                     </th>
-                                    <td>
+                                    <td class="px-4">
                                         <div class="flex">
                                             <a href="{{ route('admin.genres.edit', ['genre' => $genre->id]) }}"
                                                 class="font-medium text-sky-500 hover:underline px-1">Edit</a>
@@ -75,6 +75,9 @@
             </div>
         </div>
     </div>
+    </div>
+    <div class="mt-4">
+            {{ $genres->links('pagination::tailwind') }}
     </div>
     </div>
     </div>

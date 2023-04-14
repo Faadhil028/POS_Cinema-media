@@ -10,9 +10,13 @@ class GenreController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $genres = Genre::all();
+        if ($request->has('search')) {
+            $genres = Genre::where('name', 'LIKE', '%' . $request->search . '%')->paginate(10);
+        } else {
+            $genres = Genre::paginate(10);
+        }
         return view('genres.index',['genres'=>$genres]);
     }
 

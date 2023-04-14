@@ -12,10 +12,15 @@ use Validator;
 
 class FilmController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('read.film');
-        $films = Film::all();
+        if ($request->has('search')) {
+            $films = Film::where('title', 'LIKE', '%' . $request->search . '%')->paginate(10);
+        } else {
+            $films = Film::paginate(10);
+        }
+        // $films = Film::all();
         return view('films.index', ['films' => $films]);
     }
 

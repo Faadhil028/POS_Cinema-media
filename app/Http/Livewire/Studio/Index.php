@@ -16,9 +16,9 @@ class Index extends Component
                 ->orWhere('price', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('is_active', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('weekend_price', 'LIKE', '%' . $this->search . '%')
-                ->get();
+                ->get()->paginate(10);
         } else {
-            $studios = Studio::all();
+            $studios = Studio::paginate(10);
         }
         return view('livewire.studio.index', compact('studios'));
     }

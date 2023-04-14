@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class transactions extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('read.transaction');
         return view('admin.transactions.index');

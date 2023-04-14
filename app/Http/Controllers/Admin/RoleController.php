@@ -16,7 +16,7 @@ class RoleController extends Controller
         if ($request->has('search')) {
             $roles = Role::where('name', 'LIKE', '%' . $request->search . '%')->get();
         } else {
-            $roles = Role::all();
+            $roles = Role::paginate(10);
         }
         return view('admin.roles.index', compact('roles'));
     }
