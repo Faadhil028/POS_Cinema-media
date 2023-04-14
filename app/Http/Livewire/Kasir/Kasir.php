@@ -129,7 +129,7 @@ class Kasir extends Component
             $number = 1;
         }
         $number = str_pad($number, 4, '0', STR_PAD_LEFT);
-        $invoice_code = "TUE" . Carbon::now()->format('dmY') . $number;
+        $invoice_code = Carbon::now()->format('D') . Carbon::now()->format('dmY') . $number;
 
         // Tanggal transaksi sekarang
         $dateNow = Carbon::now()->format('Y-m-d H:i:s');

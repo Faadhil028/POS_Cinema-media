@@ -97,8 +97,6 @@ class FilmController extends Controller
 
     public function update(Request $request, Film $film)
     {
-        // dd($request->oldTumbnail);
-        // dd(Storage::delete('/uploads' . $request->oldTumbnail));
         $dataValidation = Validator::make($request->all(), [
             'title'         => 'required',
             'duration'      => 'required|min:0|not_in:0|max:3',
@@ -119,7 +117,7 @@ class FilmController extends Controller
                 array_push($array_data, $value);
             }
 
-            //Image Upload adn delete old image
+            //Image Upload and delete old image
             if ($request->file('tumbnail')) {
                 if ($request->oldTumbnail) {
                     Storage::disk('public')->delete('uploads/' . $request->oldTumbnail);
@@ -164,7 +162,7 @@ class FilmController extends Controller
             $extFile = $request->tumbnail->getClientOriginalExtension();
 
             //Generate image name
-            $filename = $slug . '-' .  "." . $extFile; //Update Gambar hapus file lama..DISISINININININI!!!!
+            $filename = $slug . '-' .  "." . $extFile;
 
             //Upload Process, Save to "uploads" folder
             $request->tumbnail->storeAs('/uploads', $filename);
