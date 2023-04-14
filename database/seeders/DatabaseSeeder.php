@@ -16,6 +16,10 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(permissionSeeder::class);
+        $this->call(GenreSeeder::class);
+        $this->call(FilmSeeder::class);
+        $this->call(StudioSeeder::class);
+        $this->call(SeatSeeder::class);
 
     }
 }
