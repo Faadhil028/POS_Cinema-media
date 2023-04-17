@@ -61,7 +61,7 @@
                             auth()->user()->can('read.timetable') ||
                             auth()->user()->can('read.transaksi'))
                         <h4
-                            class="px-4 py-1 mt-2 text-md font-semibold text-sky-500 focus:outline-none focus:shadow-outline">
+                            class="px-4 py-1 mt-2 text-2xl font-semibold text-sky-500 focus:outline-none focus:shadow-outline">
                             Dashboard</h4>
                     @endif
                     @if (auth()->user()->can('read.film'))
@@ -139,7 +139,7 @@
                 @role('admin')
                     <div class="mt-4">
                         <h4
-                            class="px-4 py-1 mt-2 text-md font-semibold text-sky-500 focus:outline-none focus:shadow-outline">
+                            class="px-4 py-1 mt-2 text-2xl font-semibold text-sky-500 focus:outline-none focus:shadow-outline">
                             Admin</h4>
                         <a href="{{ route('admin.users.index') }}"
                             class="block {{ request()->routeIs('admin.users.*') ? 'bg-gray-600' : '' }} flex items-center p-1 text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
@@ -175,17 +175,16 @@
 
 
                         <!-- <a class="block {{ request()->routeIs('admin.films.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                                                                                                                                                                                                                    href="{{ route('admin.films.index') }}">Film</a>
-                                                                                                                                                                                                                                    <a class="block {{ request()->routeIs('admin.genres.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                                                                                                                                                                                                                    href="{{ route('admin.genres.index') }}">Genre</a> -->
+                                                                                                                                                                                                                                                                                                                                                                    href="{{ route('admin.films.index') }}">Film</a>
+                                                                                                                                                                                                                                                                                                                                                                    <a class="block {{ request()->routeIs('admin.genres.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                                                                                                                                                                                                                                                                                                                                                    href="{{ route('admin.genres.index') }}">Genre</a> -->
 
 
                     </div>
                 @endrole
-                <div class="mt-9 ml-1">
-                    <form method="POST"
-                        action="{{ route('logout') }} text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                        class="rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                <div class="mt-9">
+                    <form method="POST" action="{{ route('logout') }}"
+                        class="flex items-center p-1 text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline ">
                         @csrf
                         <button type="submit" class="font-semibold text-sm ml-0 flex items-center p-0">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -193,7 +192,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                             </svg>
-                            <span class="flex-1 ml-1 whitespace-nowrap">
+                            <span class="flex-1 ml-2 whitespace-nowrap">
                                 {{ __('Log Out') }}
                             </span>
                         </button>
