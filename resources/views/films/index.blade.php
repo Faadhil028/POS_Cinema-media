@@ -55,9 +55,9 @@
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $film->title }}</th>
-                                    <th>{{ $film->duration }}</th>
-                                    <th>{{ $film->genre }}</th> {{-- Problematic dengan pengambilan data genre --}}
-                                    <th>{{ $film->description }}</th>
+                                    <th class="px-6">{{ $film->duration }}</th>
+                                    <th class="px-6">{{ $film->genre }}</th> {{-- Problematic dengan pengambilan data genre --}}
+                                    <th class="px-6">{{ $film->description }}</th>
                                     <th><img src="{{ asset('storage/uploads/' . $film->tumbnail) }}"
                                             alt="Tumbnail Missing" class="h-16 w-auto"></th>
                                     <th>{{ $film->start_date }}</th>
