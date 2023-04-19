@@ -35,7 +35,7 @@ class GenreSeeder extends Seeder
             'name' => 'Fantasy',
             'is_active' => '0']);
         Genre::create([
-            'name' => 'Advanture',
+            'name' => 'Adventure',
             'is_active' => '1']);
     }
 }
