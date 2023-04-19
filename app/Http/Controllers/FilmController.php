@@ -98,16 +98,6 @@ class FilmController extends Controller
         $start_date_carbon = Carbon::parse($film->start_date)->format('Y-m-d');
         $end_date_carbon = Carbon::parse($film->end_date)->format('Y-m-d');
 
-        $a = $film->end_date;
-        $b = date(now()->format('Y-m-d'));
-        $c = [];
-        $d = DB::table('timetables')->where('end_date', '<', '2023-04-04');
-
-        array_push($c, $a);
-        array_push($c, $b);
-
-        dd($d);
-
         $genreIds = [];
         foreach ($genreList as $value) {
             array_push($genreIds, $value->id);
