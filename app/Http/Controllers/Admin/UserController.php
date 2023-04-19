@@ -17,9 +17,13 @@ use App\Providers\RouteServiceProvider;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        if ($request->has('search')) {
+            $users = User::where('name', 'LIKE', '%' . $request->search . '%')->paginate(10);
+        } else {
+            $users = User::paginate(10);
+        }
         return view('admin.users.index', compact('users'));
     }
 
