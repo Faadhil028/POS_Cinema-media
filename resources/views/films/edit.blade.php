@@ -17,13 +17,13 @@
                                 value="{{ old('title') ?? $film->title }}"
                                 class="block mt-1 w-full @error('title') is-invalid @enderror" />
                             @error('title')
-                                <div class="text-danger">{{ $message }}</div>
+                                <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
                         {{-- Genre --}}
                         <div class="mb-3">
-                            <label class="dark:text-white text-base" for="genre[]">Genre</label><br>
+                            <label class="dark:text-white text-base" for="genre">Genre</label><br>
                             @forelse ($genres as $genre)
                                 {{ $checked = '' }}
                                 <input type="checkbox" name="genre[]" id="{{ $genre->name }}"
@@ -36,7 +36,7 @@
                                 <p>Looks like there is no active genre</p>
                             @endforelse
                             @error('genre')
-                                <div class="text-danger">{{ $message }}</div>
+                                <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -47,7 +47,7 @@
                                 value="{{ old('description') ?? $film->description }}"
                                 class="block mt-1 w-full @error('description') is-invalid @enderror" />
                             @error('description')
-                                <div class="text-danger">{{ $message }}</div>
+                                <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -60,7 +60,7 @@
                                     value="{{ old('duration') ?? $film->duration }}"
                                     class="block mt-1 w-full @error('duration') is-invalid @enderror" />
                                 @error('duration')
-                                    <div class="text-danger">{{ $message }}</div>
+                                    <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -71,7 +71,7 @@
                                     value="{{ old('start_date') ?? $start }}"
                                     class="block mt-1 w-full @error('start_date') is-invalid @enderror" />
                                 @error('start_date')
-                                    <div class="text-danger">{{ $message }}</div>
+                                    <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -82,7 +82,7 @@
                                     value="{{ old('end_date') ?? $end }}"
                                     class="block mt-1 w-full @error('end_date') is-invalid @enderror" />
                                 @error('end_date')
-                                    <div class="text-danger">{{ $message }}</div>
+                                    <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                                 type="file" id="tumbnail" name="tumbnail" onchange="previewImage()"
                                 value="{{ old('tumbnail') ?? $film->tumbnail }}">
                             @error('tumbnail')
-                                <div class="text-danger">{{ $message }}</div>
+                                <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -129,7 +129,7 @@
                                 <option value="ENDED" {{ $ended }}>ENDED</option>
                             </select>
                             @error('status')
-                                <div class="text-danger">{{ $message }}</div>
+                                <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
