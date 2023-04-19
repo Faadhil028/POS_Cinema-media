@@ -12,7 +12,7 @@
                             <x-text-input type="text" id="title" name="title" value="{{ old('title') }}"
                                 class="block mt-1 w-full @error('title') is-invalid @enderror" />
                             @error('title')
-                                <div class="text-danger">{{ $message }}</div>
+                                <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -27,7 +27,7 @@
                                 <p>Looks like there is no active genre</p>
                             @endforelse
                             @error('genre')
-                                <div class="text-danger">{{ $message }}</div>
+                                <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -37,7 +37,7 @@
                                 value="{{ old('description') }}"
                                 class="block mt-1 w-full @error('description') is-invalid @enderror" />
                             @error('description')
-                                <div class="text-danger">{{ $message }}</div>
+                                <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -49,7 +49,7 @@
                                     class="block mt-1 w-full @error('duration') is-invalid @enderror" max="999"
                                     min="0" />
                                 @error('duration')
-                                    <div class="text-danger">{{ $message }}</div>
+                                    <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -59,7 +59,7 @@
                                     value="{{ old('start_date') }}"
                                     class="block mt-1 w-full @error('start_date') is-invalid @enderror" />
                                 @error('start_date')
-                                    <div class="text-danger">{{ $message }}</div>
+                                    <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3 w-full ml-2">
@@ -68,7 +68,7 @@
                                     value="{{ old('end_date') }}"
                                     class="block mt-1 w-full @error('end_date') is-invalid @enderror" />
                                 @error('end_date')
-                                    <div class="text-danger">{{ $message }}</div>
+                                    <div class="text-red-500">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                                 type="file" id="tumbnail" name="tumbnail" value="{{ old('tumbnail') }}"
                                 onchange="previewImage()">
                             @error('tumbnail')
-                                <div class="text-danger">{{ $message }}</div>
+                                <div class="text-red-500">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -94,7 +94,7 @@
                                 <option value="ENDED">ENDED</option>
                             </select>
                             @error('status')
-                                <div class="text-danger">{{ $message }}</div>
+                                <div class="text-red">{{ $message }}</div>
                             @enderror
                         </div>
 

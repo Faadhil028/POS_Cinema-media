@@ -14,7 +14,7 @@
                         class="block mt-1 w-full @error('name') is-invalid @enderror"></x-text-input>
 
                         @error('name')
-                            <div class="text-danger">{{ $message }}</div>
+                            <div class="text-red-500">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -31,7 +31,7 @@
                             <label for="no" class="dark:text-white text-base">Not Active</label>
                         </div>
                         @error('is_active')
-                            <div class="text-danger">{{ $message }}</div>
+                            <div class="text-red-500">{{ $message }}</div>
                         @enderror
                     </div>
                     <!-- <button type="submit" class="btn btn-primary mb-2">Submit</button> -->
