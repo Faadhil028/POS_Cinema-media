@@ -130,6 +130,21 @@
     {{-- <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js"
         data-turbolinks-eval="false"></script> --}}
 
+
+    {{-- <script>
+        window.addEventListener('show-form'
+            event => {
+                $('#form').modal('show');
+            }
+        )
+    </script> --}}
+
+    <script>
+        window.addEventListener('show-form', event => {
+            alert('Table Order : ' + event.detail.newMoney + event.detail.newSeat);
+        })
+    </script>
+
     @livewireScripts
 </body>
 
