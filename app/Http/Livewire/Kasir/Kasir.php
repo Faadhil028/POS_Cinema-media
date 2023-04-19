@@ -94,6 +94,7 @@ class Kasir extends Component
     public function calculateChange()
     {
         if ($this->amountPaid) {
+            $this->validateOnly('amountPaid');
             $this->change = $this->amountPaid - $this->total;
         } else {
             $this->amountPaid = 0;

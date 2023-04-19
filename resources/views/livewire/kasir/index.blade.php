@@ -13,7 +13,7 @@
             </div>
             <div class="p-2">
                 <div class="input-group">
-                    <input class="form-control border-2 rounded-pill" type="search" wire:model='search'
+                    <input class="form-control border-2 rounded-pill" type="search" wire:model.lazy='search'
                         placeholder="Pencarian...">
                 </div>
             </div>
@@ -63,13 +63,15 @@
                                     </div>
                                 </div>
                                 <div class="poster-title mt-3 ml-3">{{ $timetable->title }}</div>
+                                <div class="poster-title mt-1 ml-3 btn btn-dark">{{ $timetable->genre }}</div>
                             </a>
                         </div>
                     @endforeach
                 </div>
             @else
-                <div class="d-flex align-items-center justify-content-center mt-auto">
-                    <h1 class="text-center">Tidak ada film</h1>
+                <div class="d-flex align-items-center justify-content-center">
+                    {{-- <h1 class="text-center">Tidak ada film</h1> --}}
+                    <img src="{{ asset('search_not_found2.png') }}" width="700">
                 </div>
             @endif
 

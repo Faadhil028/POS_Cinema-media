@@ -62,6 +62,14 @@
             <table class="text-white">
                 <tbody>
                     <tr>
+                        <th>Harga satuan</th>
+                        <th> </th>
+                        <th>
+                            Rp
+                            {{ number_format($price) }}
+                        </th>
+                    </tr>
+                    <tr>
                         <th>Sub Total</th>
                         <th> </th>
                         <th>
