@@ -71,7 +71,7 @@
             @else
                 <div class="d-flex align-items-center justify-content-center">
                     {{-- <h1 class="text-center">Tidak ada film</h1> --}}
-                    <img src="{{ asset('search_not_found2.png') }}" width="700">
+                    <img src="{{ asset('search_not_found2.png') }}" width="500">
                 </div>
             @endif
 

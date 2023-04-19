@@ -66,21 +66,22 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        $rules = [
+            'name' => 'required',
+            'email' => 'required|email',
+        ];
+
         if ($request->password) {
-            $validated = $request->validate([
-                'name' => ['required'],
-                'email' => ['required', 'email'],
-                'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            ]);
-        } else {
-            $validated = $request->validate([
-                'name' => ['required'],
-                'email' => ['required', 'email'],
-            ]);
+            $rules['password'] = ['required', 'confirmed', Rules\Password::defaults()];
         }
-        $password = Hash::make($validated['password']);
+
+        $validated = $request->validate($rules);
+
+        if ($request->password) {
+            $validated['password'] = Hash::make($validated['password']);
+        }
+
         $user->update($validated);
-        $user->update(["password" => $password]);
         $user->syncRoles($request->role);
 
         return to_route('admin.users.index');

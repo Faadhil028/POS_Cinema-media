@@ -219,7 +219,6 @@
                     <h3>{{ $item }}</h3>
                     <span>seat</span>
                 </div>
-                <div class="barcode"></div>
             </div>
         </div>
     @endforeach
