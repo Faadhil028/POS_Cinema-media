@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Str;
 use Carbon\Carbon;
 use App\Models\Film;
 use App\Models\Genre;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -119,7 +119,7 @@ class FilmController extends Controller
                 array_push($array_data, $value);
             }
 
-            //Image Upload adn delete old image
+            //Image Upload and delete old image
             if ($request->file('tumbnail')) {
                 if ($request->oldTumbnail) {
                     Storage::disk('public')->delete('uploads/' . $request->oldTumbnail);

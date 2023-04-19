@@ -8,9 +8,11 @@ use App\Models\Studio;
 use Livewire\Component;
 use App\Models\Timetable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Index extends Component
 {
+    use AuthorizesRequests;
     public $showIndex = true;
     public $price = 0;
     public $filmName = " ";
@@ -30,21 +32,24 @@ class Index extends Component
     {
         $this->timeNow = now()->format('H:i:s');
     }
+
     // Menampilkan data film dari timetable
     public function render()
     {
+        $this->authorize('create.transaction');
         // Date Now
         $this->dateNow = Carbon::now()->locale('id')->isoFormat('YYYY-MM-DD');
         // Date Dummy agar tampil
         // $this->dateNow = Carbon::now()->locale('id')->isoFormat('YYYY-MM-04');
 
-        // dd($this->dateNow);
         if ($this->search) {
             $this->genre = null;
             $timetables = Timetable::select('f.title', 'f.description', 'f.genre', 'f.tumbnail', 'f.status', 't.date', DB::raw("GROUP_CONCAT(DISTINCT CONCAT(t.id ,';', t.start_time,';',s.name)) as button"))
                 ->from('timetables as t')
                 ->join('films as f', 't.film_id', '=', 'f.id')
                 ->join('studios as s', 't.studio_id', '=', 's.id')
+                ->where('f.status', "CURRENTLY AIRING")
+                ->where('date', $this->dateNow)
                 ->where('f.title', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('f.genre', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('f.description', 'LIKE', '%' . $this->search . '%')
@@ -55,6 +60,8 @@ class Index extends Component
                 ->from('timetables as t')
                 ->join('films as f', 't.film_id', '=', 'f.id')
                 ->join('studios as s', 't.studio_id', '=', 's.id')
+                ->where('f.status', "CURRENTLY AIRING")
+                ->where('date', $this->dateNow)
                 ->where('f.genre', 'LIKE', '%' . $this->genre . '%')
                 ->groupBy('f.title', 'f.description', 'f.genre', 'f.tumbnail', 'f.status', 't.date')
                 ->get();
@@ -63,6 +70,8 @@ class Index extends Component
                 ->from('timetables as t')
                 ->join('films as f', 't.film_id', '=', 'f.id')
                 ->join('studios as s', 't.studio_id', '=', 's.id')
+                ->where('f.status', "CURRENTLY AIRING")
+                ->where('date', $this->dateNow)
                 ->groupBy('f.title', 'f.description', 'f.genre', 'f.tumbnail', 'f.status', 't.date')
                 ->get();
         }

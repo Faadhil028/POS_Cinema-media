@@ -1,6 +1,7 @@
 <div class="p-3 bg-white" style="border-radius: 20px; height:100vh">
-    <h3>Daftar Pesanan</h3>
-    <hr>
+    <div class="card-header px-0 py-0 bg-white mb-3">
+        <h3>Daftar Pesanan</h3>
+    </div>
     @if ($filmName == ' ')
         <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
             <div class="text-center">
@@ -11,8 +12,6 @@
         </div>
     @else
         <h3>{{ $studioName }} ({{ $studioClass }})</h3>
-        {{-- <p>Date : {{ $date }}</p>
-        <p>Time : {{ \Carbon\Carbon::parse($time)->format('H:i') }}</p> --}}
         <div class="card bg-dark p-2 mt-3" style="border-radius: 10px">
             <table class="text-white">
                 <tbody>
@@ -38,12 +37,12 @@
                         </tr> --}}
                     @endif
                     <tr>
-                        <th>Date</th>
+                        <th>Waktu</th>
                         <th> </th>
                         <th> {{ $date }}</th>
                     </tr>
                     <tr>
-                        <th>Time</th>
+                        <th>Jam</th>
                         <th> </th>
                         <th> {{ \Carbon\Carbon::parse($time)->format('H:i') }}</th>
                     </tr>
@@ -58,6 +57,7 @@
                 </button>
             </div>
         @enderror
+
         <div class="card bg-dark p-2 mt-3" style="border-radius: 10px">
             <table class="text-white">
                 <tbody>
@@ -69,6 +69,11 @@
                             {{ number_format(count($seats) * $price) }}
                         </th>
                     </tr>
+                    <tr class="border-bottom">
+                        <th>Pajak</th>
+                        <th> </th>
+                        <th> 0 % </th>
+                    </tr>
                     <tr>
                         <th>Total</th>
                         <th> </th>
@@ -79,66 +84,70 @@
                 </tbody>
             </table>
         </div>
-        <div class="card bg-dark p-2 mt-3"
-            style="border-radius: 10px; display : @if ($showCash === true) block @else none @endif;">
-            <table class="text-white">
-                <tbody>
-                    <tr>
-                        <th>Uang Pembayaran</th>
-                        <th> </th>
-                        <th class="form-inline">
-                            <p>
-                                Rp
-                                <input type="number" class="form-control bg-transparent text-white" min="0"
-                                    wire:model='amountPaid' wire:change='calculateChange'
-                                    oninput="validity.valid||(value=0);" onclick="if(this.value=='0') this.value='';"
-                                    value="{{ $amountPaid ? number_format($amountPaid) : 0 }}">
-                            </p>
-                        </th>
-                    </tr>
-                    @error('amountPaid')
-                        <div class="alert alert-warning alert-warning fade show mt-2" role="alert">
-                            {{ $message }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @enderror
-                    <tr>
-                        <th>Uang Kembalian</th>
-                        <th> </th>
-                        <th>Rp {{ number_format($change) }}</th>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="card bg-dark p-2 mt-3 text-white"
-            style="border-radius: 10px; display : @if ($showQris === true) block @else none @endif;">
-            <h1>Ini QRIS</h1>
-        </div>
-        <div class="p-2 d-flex justify-content-center mt-3" style="border-radius: 10px;">
-            <button class="p-2 mr-2"
-                style="width:100px; border: 1px solid black; border-radius: 15px; @if ($showCash) background-color: #343A40; color: white; @else  background-color: white; @endif"
-                wire:click='showCash'>Cash</button>
-            <button class="p-2"
-                style="width:100px; border: 1px solid black; border-radius: 15px; @if ($showQris) background-color: #343A40; color: white; @else  background-color: white; @endif"
-                wire:click='showQris'>Qris</button>
-            @error('method')
-                <div class="alert alert-warning alert-warning fade show mt-2" role="alert">
-                    {{ $message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @enderror
-        </div>
-        <div class="p-2
-            d-flex justify-content-center mt-3">
-            <button class="btn btn-warning form-control mr-2" style="width:75%; border-radius:15px"
-                wire:click='resetField'>Reset</button>
-            <button class="btn btn-dark form-control" style="width:75%; border-radius:15px"
-                wire:click='store'>Order</button>
 
+
+        <div>
+            <div class="card bg-dark p-2 mt-3"
+                style="border-radius: 10px; display : @if ($showCash === true) block @else none @endif;">
+                <table class="text-white">
+                    <tbody>
+                        <tr>
+                            <th>Uang Pembayaran</th>
+                            <th> </th>
+                            <th class="form-inline">
+                                <p>
+                                    Rp
+                                    <input type="number" class="form-control bg-transparent text-white" min="0"
+                                        wire:model='amountPaid' wire:change='calculateChange'
+                                        oninput="validity.valid||(value=0);"
+                                        onclick="if(this.value=='0') this.value='';"
+                                        value="{{ $amountPaid ? number_format($amountPaid) : 0 }}">
+                                </p>
+                            </th>
+                        </tr>
+                        @error('amountPaid')
+                            <div class="alert alert-warning alert-warning fade show mt-2" role="alert">
+                                {{ $message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @enderror
+                        <tr>
+                            <th>Uang Kembalian</th>
+                            <th> </th>
+                            <th>Rp {{ number_format($change) }}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card bg-dark p-2 mt-3 text-white"
+                style="border-radius: 10px; display : @if ($showQris === true) block @else none @endif;">
+                <h1>Ini QRIS</h1>
+            </div>
+            <div class="p-2 d-flex justify-content-center mt-3" style="border-radius: 10px;">
+                <button class="p-2 mr-2"
+                    style="width:100px; border: 1px solid black; border-radius: 15px; @if ($showCash) background-color: #343A40; color: white; @else  background-color: white; @endif"
+                    wire:click='showCash'>Cash</button>
+                <button class="p-2"
+                    style="width:100px; border: 1px solid black; border-radius: 15px; @if ($showQris) background-color: #343A40; color: white; @else  background-color: white; @endif"
+                    wire:click='showQris'>Qris</button>
+                @error('method')
+                    <div class="alert alert-warning alert-warning fade show mt-2" role="alert">
+                        {{ $message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @enderror
+            </div>
+            <div class="p-2
+            d-flex justify-content-center mt-3">
+                <button class="btn btn-warning form-control mr-2" style="width:75%; border-radius:15px"
+                    wire:click='resetField'>Reset</button>
+                <button class="btn btn-dark form-control" style="width:75%; border-radius:15px"
+                    wire:click='store'>Pesan</button>
+            </div>
         </div>
     @endif
 

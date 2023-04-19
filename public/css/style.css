@@ -1,7 +1,13 @@
-@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+/* @import url("https://fonts.googleapis.com/css?family=Lato&display=swap"); */
+
+@font-face {
+    font-family: "GothamRounded";
+    src: url("../fonts/GothamRounded-Medium.otf");
+}
 
 * {
     box-sizing: border-box;
+    font-family: "GothamRounded", "Poppins", sans-serif;
 }
 
 /* body {
@@ -242,7 +248,7 @@ ol {
     -ms-transition: all 300ms ease-in-out;
 }
 
-.image-caption button {
+.image-caption .show {
     width: 100%;
     display: block;
     margin: auto;
@@ -258,7 +264,25 @@ ol {
     background-color: rgba(0, 0, 0, 0);
 }
 
-.image-caption button:hover {
+.image-caption .disabled {
+    width: 100%;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 20px;
+    font-size: 16px;
+    color: white;
+    border-color: #6c757d;
+    text-decoration: none;
+    background-color: #6c757d;
+    cursor: default;
+    opacity: 0.65;
+}
+
+.image-caption .show:hover {
     background-color: white;
     color: black;
 }

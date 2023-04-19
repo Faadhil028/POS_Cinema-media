@@ -58,8 +58,11 @@
                 class="flex-grow px-4 pb-4 md:block md:pb-0 md:overflow-y-auto">
                 <div>
                     @if (auth()->user()->can('read.film') ||
+                            auth()->user()->can('read.genre') ||
                             auth()->user()->can('read.timetable') ||
-                            auth()->user()->can('read.transaksi'))
+                            auth()->user()->can('read.seat') ||
+                            auth()->user()->can('read.transaction') ||
+                            auth()->user()->can('read.studio'))
                         <h4
                             class="px-4 py-1 mt-2 text-md font-semibold text-sky-500 focus:outline-none focus:shadow-outline">
                             Dashboard</h4>
@@ -101,9 +104,9 @@
                         <a class="block {{ request()->routeIs('admin.permissions.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                             href="{{ route('admin.permissions.index') }}">Permission</a>
                         <!-- <a class="block {{ request()->routeIs('admin.films.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                                                                                                                                                                                                                                                                            href="{{ route('admin.films.index') }}">Film</a>
-                                                                                                                                                                                                                                                                                        <a class="block {{ request()->routeIs('admin.genres.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                                                                                                                                                                                                                                                                            href="{{ route('admin.genres.index') }}">Genre</a> -->
+                                                                                                                                                                                                                                                                                                    href="{{ route('admin.films.index') }}">Film</a>
+                                                                                                                                                                                                                                                                                                <a class="block {{ request()->routeIs('admin.genres.*') ? 'bg-gray-600' : '' }} px-4 py-2 mt-2 text-sm font-semibold text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                                                                                                                                                                                                                                                                                    href="{{ route('admin.genres.index') }}">Genre</a> -->
                     </div>
                 @endrole
                 <div class="mt-10">

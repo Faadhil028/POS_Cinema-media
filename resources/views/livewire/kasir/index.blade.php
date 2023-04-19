@@ -1,12 +1,12 @@
 <div>
     <div class="bg-white p-3"
-        style="border-radius: 20px; height: 100vh; display : @if ($showIndex === true) block @else none @endif;">
+        style="border-radius: 20px; min-height: 100vh; display : @if ($showIndex === true) block @else none @endif;">
         <div class="d-flex justify-content-between">
             <div class="p-2">
-                <button class="btn {{ $this->genre === null ? 'btn-secondary' : 'btn-dark' }}" style="border-radius: 10px"
+                <button class="btn {{ $this->genre === null ? 'btn-dark' : 'btn-secondary' }}" style="border-radius: 10px"
                     wire:click.prevent='resetFilter()'>All</button>
                 @foreach ($genres as $genre)
-                    <button class="btn {{ $this->genre === $genre->name ? 'btn-secondary' : 'btn-dark' }}"
+                    <button class="btn {{ $this->genre === $genre->name ? 'btn-dark' : 'btn-secondary' }}"
                         style="border-radius: 10px"
                         wire:click.prevent='filter({{ $genre->id }})'>{{ $genre->name }}</button>
                 @endforeach
@@ -14,17 +14,16 @@
             <div class="p-2">
                 <div class="input-group">
                     <input class="form-control border-2 rounded-pill" type="search" wire:model='search'
-                        placeholder="search">
+                        placeholder="Pencarian...">
                 </div>
             </div>
         </div>
         <div class="container pt-3">
-            <div class="row row-cols-4 g-4">
-                @forelse ($timetables as $timetable)
-                    {{-- Tampilkan film jika status Currently Staring dan Hari yang sama dengan sekarang --}}
-                    @if ($timetable->date == $dateNow && $timetable->status == 'CURRENTLY AIRING')
+            @if (!$timetables->isEmpty())
+                <div class="row row-cols-4 g-4">
+                    @foreach ($timetables as $timetable)
                         <div class="col d-flex justify-content-center">
-                            <a href="" class="text-decoration-none text-dark">
+                            <a class="text-decoration-none text-dark">
                                 <div class="image-container">
                                     @if ($timetable->tumbnail)
                                         <img src="{{ asset('storage/uploads/' . $timetable->tumbnail) }}"
@@ -51,7 +50,12 @@
                                             @endphp
                                             {{-- Untuk menampilakan Jam tidak lebih dari sekarang --}}
                                             @if (\Carbon\Carbon::parse($time)->format('H:i:s') >= $timeNow)
-                                                <button wire:click.prevent='pickSeat({{ $timetableId }})'>
+                                                <button class="show"
+                                                    wire:click.prevent='pickSeat({{ $timetableId }})'>
+                                                    ({{ $studio }})
+                                                    {{ \Carbon\Carbon::parse($time)->format('H:i') }}</button>
+                                            @else
+                                                <button class="disabled" disabled>
                                                     ({{ $studio }})
                                                     {{ \Carbon\Carbon::parse($time)->format('H:i') }}</button>
                                             @endif
@@ -61,17 +65,14 @@
                                 <div class="poster-title mt-3 ml-3">{{ $timetable->title }}</div>
                             </a>
                         </div>
-                        {{-- @else
-                        <div class="d-none d-lg-block">
-                            <p>Ini adalah sebuah teks dalam div yang hanya muncul pada tampilan desktop.</p>
-                        </div> --}}
-                    @endif
-                @empty
-                    {{-- <div class="d-flex align-items-center justify-content-center">
-                        <h1 class="text-center">Tidak Ditemukan</h1>
-                    </div> --}}
-                @endforelse
-            </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="d-flex align-items-center justify-content-center mt-auto">
+                    <h1 class="text-center">Tidak ada film</h1>
+                </div>
+            @endif
+
         </div>
     </div>
     <livewire:kasir.seat />
@@ -81,6 +82,6 @@
     document.addEventListener('livewire:load', function() {
         setInterval(function() {
             @this.call('updateTime');
-        }, 1000);
+        }, 60000);
     });
 </script>

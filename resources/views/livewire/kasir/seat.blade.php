@@ -3,8 +3,8 @@
         style="border-radius: 20px; height:100vh; display : @if ($showSeat === true) block @else none @endif;">
         <div class="container py-5">
             <div class="row mb-5">
-                <div class="title">PILIH KURSI</div>
-                <div class="subtitle">Pilih kursi yang akan kamu tempati selama pemutaran film</div>
+                <h1>PILIH KURSI</h1>
+                <div>Pilih kursi yang akan kamu tempati selama pemutaran film</div>
             </div>
             <div class="row mb-5">
                 <div class="col d-flex justify-content-end">

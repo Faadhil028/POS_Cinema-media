@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\Kasir;
 
-use Carbon\Carbon;
 use Livewire\Component;
+use Carbon\Carbon;
+use App\Models\Seat;
 use App\Models\Transaction;
-use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Transaction_detail;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
@@ -77,6 +78,8 @@ class Kasir extends Component
             $this->price = $timetable["studio"]["price"];
         }
     }
+
+
     public function mount($filmName)
     {
         $this->showCash = false;
@@ -112,7 +115,7 @@ class Kasir extends Component
 
     public function resetField()
     {
-        $this->reset('total', 'seats', 'amountPaid', 'change');
+        $this->reset('total', 'seats', 'amountPaid', 'change', 'showCash', 'showQris');
         $this->emit('resetSeat');
     }
 
@@ -165,7 +168,7 @@ class Kasir extends Component
         }
 
         // Mencari id seat
-        $seatId = \App\Models\Seat::whereIn('row', $rows)->whereIn('number', $numbers)->pluck('id');
+        $seatId = Seat::whereIn('row', $rows)->whereIn('number', $numbers)->pluck('id');
 
         // Memasukkan setiap seat_id terpilih ke timetable_has_transaction
         foreach (collect($seatId) as $seat_id) {
