@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Kasir\DeskripsiOrder;
 use App\Http\Livewire\Kasir\Seat;
 use App\Http\Livewire\Kasir\Index;
 use Illuminate\Support\Facades\App;
@@ -136,5 +137,7 @@ Route::middleware(['auth', 'verified'])
         // Route::get('/ticket', [TicketController::class, 'show'])->middleware(['auth', 'verified'])->name('ticket');
         // Route::get('seat', Seat::class)->middleware(['auth', 'verified'])->name('seat');
     });
+
+Route::get('deskripsi', DeskripsiOrder::class)->name('deskripsi');
 
 require __DIR__ . '/auth.php';
