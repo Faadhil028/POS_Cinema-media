@@ -48,11 +48,13 @@ class Index extends Component
                 ->from('timetables as t')
                 ->join('films as f', 't.film_id', '=', 'f.id')
                 ->join('studios as s', 't.studio_id', '=', 's.id')
+                ->where(function ($query) {
+                    $query->where('f.title', 'LIKE', '%' . $this->search . '%')
+                        ->orWhere('f.genre', 'LIKE', '%' . $this->search . '%')
+                        ->orWhere('f.description', 'LIKE', '%' . $this->search . '%');
+                })
                 ->where('f.status', "CURRENTLY AIRING")
                 ->where('date', $this->dateNow)
-                ->where('f.title', 'LIKE', '%' . $this->search . '%')
-                ->orWhere('f.genre', 'LIKE', '%' . $this->search . '%')
-                ->orWhere('f.description', 'LIKE', '%' . $this->search . '%')
                 ->groupBy('f.title', 'f.description', 'f.genre', 'f.tumbnail', 'f.status', 't.date')
                 ->get();
         } elseif ($this->genre) {
