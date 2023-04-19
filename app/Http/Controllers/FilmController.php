@@ -9,6 +9,9 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Str;
+use Validator;
+use Illuminate\Support\Facades\DB;
 
 class FilmController extends Controller
 {
@@ -16,6 +19,13 @@ class FilmController extends Controller
     {
         $this->authorize('read.film');
         $films = Film::all();
+        $format = 'j M Y';
+        foreach ($films as $key => $film) {
+            $startDate = Carbon::parse($film->start_date);
+            $endDate = Carbon::parse($film->end_date);
+            $films[$key]->start_date = $startDate->format($format);
+            $films[$key]->end_date = $endDate->format($format);
+        }
         return view('films.index', ['films' => $films]);
     }
 
@@ -85,6 +95,16 @@ class FilmController extends Controller
         $start_date_carbon = Carbon::parse($film->start_date)->format('Y-m-d');
         $end_date_carbon = Carbon::parse($film->end_date)->format('Y-m-d');
 
+        $a = $film->end_date;
+        $b = date(now()->format('Y-m-d'));
+        $c = [];
+        $d = DB::table('timetables')->where('end_date', '<', '2023-04-04');
+
+        array_push($c, $a);
+        array_push($c, $b);
+
+        dd($d);
+
         $genreIds = [];
         foreach ($genreList as $value) {
             array_push($genreIds, $value->id);
@@ -97,8 +117,6 @@ class FilmController extends Controller
 
     public function update(Request $request, Film $film)
     {
-        // dd($request->oldTumbnail);
-        // dd(Storage::delete('/uploads' . $request->oldTumbnail));
         $dataValidation = Validator::make($request->all(), [
             'title'         => 'required',
             'duration'      => 'required|min:0|not_in:0|max:3',
@@ -164,7 +182,7 @@ class FilmController extends Controller
             $extFile = $request->tumbnail->getClientOriginalExtension();
 
             //Generate image name
-            $filename = $slug . '-' .  "." . $extFile; //Update Gambar hapus file lama..DISISINININININI!!!!
+            $filename = $slug . '-' .  "." . $extFile;
 
             //Upload Process, Save to "uploads" folder
             $request->tumbnail->storeAs('/uploads', $filename);

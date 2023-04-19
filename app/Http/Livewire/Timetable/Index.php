@@ -9,7 +9,7 @@ class Index extends Component
 {
     public function render()
     {
-        $timetables = Timetable::with(['film', 'studio', 'transaction'])->orderBy('start_time')->get();
+        $timetables = Timetable::with(['film', 'studio', 'transaction'])->orderByDesc('date')->get();
         return view('livewire.timetable.index', compact('timetables'));
     }
 }
