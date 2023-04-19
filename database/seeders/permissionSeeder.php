@@ -18,6 +18,7 @@ class permissionSeeder extends Seeder
         Permission::create(['name' => 'create.timetable']);
         Permission::create(['name' => 'create.studio']);
         Permission::create(['name' => 'create.seat']);
+        Permission::create(['name' => 'create.transaction']);
 
         Permission::create(['name' => 'read.film']);
         Permission::create(['name' => 'read.genre']);
