@@ -90,7 +90,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <th class=" col-span-6 px-6 py-4">
+                                <th colspan="5" class="text-center py-4">
                                     Nothing to show
                                 </th>
                             </tr>

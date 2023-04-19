@@ -51,7 +51,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($transactions as $transaction)
+                        @forelse ($transactions as $transaction)
                             <tr
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <th scope="row"
@@ -85,15 +85,16 @@
                                             class="px-1 font-medium text-sky-500 hover:underline" type="button">
                                             Detail
                                         </button>
-                                        {{-- /
-                                            <button type="submit"
-                                                class="px-1 font-medium text-sky-500 hover:underline">
-                                                Print Ticket
-                                            </button> --}}
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <th colspan="9" class="text-center py-4">
+                                    Nothing to show
+                                </th>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
