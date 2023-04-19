@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('transaction_detail', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->integer('id')->autoIncrement();
             $table->integer('transaction_id')->index('fk_transaction_detail_transaction1_idx');
             $table->string('film', 45)->nullable();
             $table->string('studio', 45)->nullable();
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->time('start_time')->nullable();
             $table->dateTime('transaction_time')->nullable();
 
-            $table->primary(['id', 'transaction_id']);
+            $table->foreign('transaction_id')->references('id')->on('transactions')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

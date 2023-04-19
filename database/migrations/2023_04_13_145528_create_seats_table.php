@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('seats', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->integer('id', true)->autoIncrement();
             $table->string('row', 45);
             $table->string('number', 45)->nullable();
         });

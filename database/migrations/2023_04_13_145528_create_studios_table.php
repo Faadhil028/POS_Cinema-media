@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('studios', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->integer('id', true)->autoIncrement();
             $table->string('name', 45);
             $table->enum('class', ['REGULAR', 'PREMIUM'])->nullable();
             $table->tinyInteger('is_active');

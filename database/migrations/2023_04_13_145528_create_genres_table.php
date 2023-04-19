@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('genres', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->integer('id', true)->autoIncrement();
             $table->string('name', 45)->unique();
             $table->tinyInteger('is_active')->default(1);
         });

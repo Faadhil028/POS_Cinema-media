@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('films', function (Blueprint $table) {
-            $table->integer('id', true)->unique('id_UNIQUE');
+            $table->integer('id', true)->unique('id_UNIQUE')->autoIncrement();
             $table->string('title');
             $table->integer('duration');
             $table->longText('description');
@@ -23,8 +23,6 @@ return new class extends Migration
             $table->date('end_date');
             $table->enum('status', ['COMING SOON', 'CURRENTLY AIRING', 'ENDED'])->default('COMING SOON');
             $table->string('genre', 150)->nullable();
-
-            $table->primary(['id']);
         });
     }
 
