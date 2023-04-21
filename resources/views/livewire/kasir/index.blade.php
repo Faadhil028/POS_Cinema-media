@@ -59,11 +59,17 @@
                                                 $seatSold = Transaction::where('timetable_id', $timetableId)->sum('quantity');
                                             @endphp
                                             {{-- Untuk menampilakan Jam tidak lebih dari sekarang  dan kursi masih tersedia --}}
-                                            @if (\Carbon\Carbon::parse($time)->format('H:i:s') >= $timeNow && $seatSold < $seatCount)
-                                                <button class="show"
-                                                    wire:click.prevent='pickSeat({{ $timetableId }})'>
-                                                    ({{ $studio }})
-                                                    {{ \Carbon\Carbon::parse($time)->format('H:i') }}</button>
+                                            @if (\Carbon\Carbon::parse($time)->format('H:i:s') >= $timeNow)
+                                                @if ($seatSold < $seatCount)
+                                                    <button class="show"
+                                                        wire:click.prevent='pickSeat({{ $timetableId }})'>
+                                                        ({{ $studio }})
+                                                        {{ \Carbon\Carbon::parse($time)->format('H:i') }}</button>
+                                                @else
+                                                    <button class="disabled" disabled>
+                                                        (SOLD OUT)
+                                                        {{ \Carbon\Carbon::parse($time)->format('H:i') }}</button>
+                                                @endif
                                             @else
                                                 <button class="disabled" disabled>
                                                     ({{ $studio }})
