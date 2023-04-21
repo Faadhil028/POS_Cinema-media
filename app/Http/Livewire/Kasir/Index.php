@@ -39,9 +39,9 @@ class Index extends Component
     {
         $this->authorize('create.transaction');
         // Date Now
-        // $this->dateNow = Carbon::now()->locale('id')->isoFormat('YYYY-MM-DD');
+        $this->dateNow = Carbon::now()->locale('id')->isoFormat('YYYY-MM-DD');
         // Date Dummy agar tampil
-        $this->dateNow = Carbon::now()->locale('id')->isoFormat('YYYY-MM-11');
+        // $this->dateNow = Carbon::now()->locale('id')->isoFormat('YYYY-MM-11');
 
         if ($this->search) {
             $this->genre = null;
