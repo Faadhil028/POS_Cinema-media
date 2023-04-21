@@ -49,10 +49,9 @@ class UserController extends Controller
 
         $user->assignRole($request->role);
 
-        // event(new Registered($user));
+        event(new Registered($user));
 
         // Auth::login($user);
-        $user->assignRole($request->role);
 
         return to_route('admin.users.index');
     }

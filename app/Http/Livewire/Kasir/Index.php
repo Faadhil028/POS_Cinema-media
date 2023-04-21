@@ -7,6 +7,7 @@ use App\Models\Genre;
 use App\Models\Studio;
 use Livewire\Component;
 use App\Models\Timetable;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -38,9 +39,9 @@ class Index extends Component
     {
         $this->authorize('create.transaction');
         // Date Now
-        $this->dateNow = Carbon::now()->locale('id')->isoFormat('YYYY-MM-DD');
+        // $this->dateNow = Carbon::now()->locale('id')->isoFormat('YYYY-MM-DD');
         // Date Dummy agar tampil
-        // $this->dateNow = Carbon::now()->locale('id')->isoFormat('YYYY-MM-04');
+        $this->dateNow = Carbon::now()->locale('id')->isoFormat('YYYY-MM-11');
 
         if ($this->search) {
             $this->genre = null;
@@ -77,6 +78,16 @@ class Index extends Component
                 ->groupBy('f.title', 'f.description', 'f.genre', 'f.tumbnail', 'f.status', 't.date')
                 ->get();
         }
+
+        // [-] Masih belum tahu cara mendapatkan id timetablenya
+        // Untuk mendapatkan berapa jumlah kursi yang ada pada jadwal
+        // $seatCount = Timetable::find(76)
+        //     ->seat()
+        //     ->count();
+
+        // Untuk mengetahui jumlah kursi yang sudah sold pada jadwal
+        // $seatSold = Transaction::where('timetable_id', 76)
+        //     ->sum('quantity');
 
         $genres = Genre::where('is_active', 1)->get();
 

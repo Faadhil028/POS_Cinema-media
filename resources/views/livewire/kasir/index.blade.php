@@ -1,4 +1,8 @@
 <div>
+    @php
+        use App\Models\Timetable;
+        use App\Models\Transaction;
+    @endphp
     <div class="bg-white p-3"
         style="border-radius: 20px; min-height: 100vh; display : @if ($showIndex === true) block @else none @endif;">
         <div class="d-flex justify-content-between">
@@ -47,9 +51,15 @@
                                                 $timetableId = $showtime['id'];
                                                 $time = $showtime['time'];
                                                 $studio = $showtime['studio'];
+                                                
+                                                $seatCount = Timetable::find($timetableId)
+                                                    ->seat()
+                                                    ->count();
+                                                
+                                                $seatSold = Transaction::where('timetable_id', $timetableId)->sum('quantity');
                                             @endphp
                                             {{-- Untuk menampilakan Jam tidak lebih dari sekarang --}}
-                                            @if (\Carbon\Carbon::parse($time)->format('H:i:s') >= $timeNow)
+                                            @if (\Carbon\Carbon::parse($time)->format('H:i:s') >= $timeNow && $seatSold < $seatCount)
                                                 <button class="show"
                                                     wire:click.prevent='pickSeat({{ $timetableId }})'>
                                                     ({{ $studio }})
@@ -70,8 +80,8 @@
                 </div>
             @else
                 <div class="d-flex align-items-center justify-content-center">
-                    {{-- <h1 class="text-center">Tidak ada film</h1> --}}
                     <img src="{{ asset('search_not_found2.png') }}" width="500">
+                    {{-- <h1 class="text-center">Tidak ada film</h1> --}}
                 </div>
             @endif
 

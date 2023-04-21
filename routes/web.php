@@ -134,10 +134,6 @@ Route::middleware(['auth', 'verified'])
         Route::get('/ticket/{id}', [TicketController::class, 'show'])
             ->middleware(['auth', 'verified'])
             ->name('ticket');
-        // Route::get('/ticket', [TicketController::class, 'show'])->middleware(['auth', 'verified'])->name('ticket');
-        // Route::get('seat', Seat::class)->middleware(['auth', 'verified'])->name('seat');
     });
-
-Route::get('deskripsi', DeskripsiOrder::class)->name('deskripsi');
 
 require __DIR__ . '/auth.php';

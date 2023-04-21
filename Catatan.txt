@@ -1,14 +1,2 @@
-Query Menampilkan nama film dan Showtime
-SELECT films.title, GROUP_CONCAT(DISTINCT CONCAT(start_time)) as showtimes
-FROM timetables
-JOIN films ON timetables.film_id = films.id
-GROUP BY films.title;
 
-// Membuat untuk timetable
-$start_date = Carbon::parse($start_date)
-$end_date = Carbon::parse($end_date)
-
-while($start_date <= end_date){
-$start_date->toDateString()
-$timetables = Timetables::create($data)
-}
+[-] Fitur Destroy User

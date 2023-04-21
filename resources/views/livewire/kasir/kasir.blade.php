@@ -1,4 +1,4 @@
-<div class="p-3 bg-white" style="border-radius: 20px; height:100vh">
+<div class="p-3 bg-white" style="border-radius: 20px; min-height:100vh">
     <div class="card-header px-0 py-0 bg-white mb-3">
         <h3>Daftar Pesanan</h3>
     </div>

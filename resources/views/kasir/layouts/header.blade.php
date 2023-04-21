@@ -3,8 +3,9 @@
         <div class="d-flex flex-row justify-content-between mb-3">
             <div class="p-2 mr-3 ml-3">
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    aria-expanded="false" aria-label="Toggle navigation" style="border: none;">
+                    {{-- <span class="navbar-toggler-icon text-white"></span> --}}
+                    <h3 class="bi bi-list text-white"></h3>
                 </button>
                 <div class="collapse navbar-collapse bg-dark position-absolute top-100 start-0" id="navbarNav">
                     @include('kasir.layouts.sidebar')
