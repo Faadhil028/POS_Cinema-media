@@ -78,7 +78,6 @@
                                             <form method="POST"
                                                 action="{{ route('admin.timetables.destroy', ['timetable' => $timetable->id]) }}"
                                                 class="px-1 font-medium text-sky-500 hover:underline">
-
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit"

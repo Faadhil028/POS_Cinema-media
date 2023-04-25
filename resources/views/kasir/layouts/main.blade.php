@@ -10,7 +10,6 @@
     {{-- Bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    {{-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" /> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     {{-- Google Font --}}
@@ -21,23 +20,11 @@
 
     {{-- <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet"> --}}
 
-    <!-- Custom styles for this template -->
-    {{-- <link href="/css/dashboard.css" rel="stylesheet"> --}}
 
-    {{-- Trix Editor --}}
-    {{-- <link rel="stylesheet" type="text/css" href="/css/trix.css">
-    <script type="text/javascript" src="/js/trix.js"></script> --}}
-
-    {{-- <style>
-        span.trix-button-group.trix-button-group--file-tools {
-            display: none;
-        }
-    </style> --}}
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('css/sidebars.css') }}">
     <link rel="stylesheet" href="../../../css/seat.css"> --}}
-
 
     @livewireStyles
 
@@ -53,26 +40,7 @@
 </head>
 
 <body style="background-color: #D9D9D9">
-    {{-- <div class="d-flex flex-row m-0">
-        @include('kasir.layouts.sidebar')
-        <div class="container-fluid m-0">
-            <div class="flex-column m-0">
-                @include('kasir.layouts.header')
-                <div class="row">
-                    <div class="col-lg">
-                        @yield('content')
-                    </div>
-                    <div class="col-lg-4">
-                        @include('kasir.kasir')
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 
-    {{-- Tanpa Sidebar --}}
-
-    {{-- <main> --}}
     <div class="container-fluid">
         @include('kasir.layouts.header')
         <div class="row">
@@ -84,7 +52,6 @@
             </div>
         </div>
     </div>
-    {{-- </main> --}}
 
 
 
@@ -98,8 +65,6 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
         integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
     </script>
-    {{-- <script src="/js/dashboard.js"></script> --}}
-    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script> --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
@@ -127,7 +92,6 @@
         setInterval(updateClock, 1000);
     </script>
     @stack('js')
-    {{-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> --}}
 
 
     {{-- <script type="module">
@@ -135,21 +99,6 @@
     </script> --}}
     {{-- <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js"
         data-turbolinks-eval="false"></script> --}}
-
-
-    {{-- <script>
-        window.addEventListener('show-form'
-            event => {
-                $('#form').modal('show');
-            }
-        )
-    </script> --}}
-
-    <script>
-        window.addEventListener('show-form', event => {
-            alert('Table Order : ' + event.detail.newMoney + event.detail.newSeat);
-        })
-    </script>
 
     @livewireScripts
 </body>

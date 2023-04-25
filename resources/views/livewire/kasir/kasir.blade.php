@@ -1,4 +1,4 @@
-<div class="p-3 bg-white" style="border-radius: 20px; height:100vh">
+<div class="p-3 bg-white" style="border-radius: 20px; min-height:100vh">
     <div class="card-header px-0 py-0 bg-white mb-3">
         <h3>Daftar Pesanan</h3>
     </div>
@@ -61,6 +61,14 @@
         <div class="card bg-dark p-2 mt-3" style="border-radius: 10px">
             <table class="text-white">
                 <tbody>
+                    <tr>
+                        <th>Harga satuan</th>
+                        <th> </th>
+                        <th>
+                            Rp
+                            {{ number_format($price) }}
+                        </th>
+                    </tr>
                     <tr>
                         <th>Sub Total</th>
                         <th> </th>
