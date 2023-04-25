@@ -36,14 +36,14 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
+                                <th scope="col" class="px-6 py-3">Tumbnail</th>
                                 <th scope="col" class="px-6 py-3">Title</th>
                                 <th scope="col" class="px-6 py-3">Duration in Minutes</th>
                                 <th scope="col" class="px-6 py-3">Genre</th>
-                                <th scope="col" class="px-6 py-3">Description</th>
-                                <th scope="col" class="px-6 py-3">Tumbnail</th>
-                                <th scope="col" class="px-6 py-3">Start Date</th>
-                                <th scope="col" class="px-6 py-3">End Date</th>
-                                <th scope="col" class="px-6 py-3">Status</th>
+                                <th scope="col" class="px-6 py-3 hidden">Description</th>
+                            <th scope="col" class=" py-3">Start Date</th>
+                                <th scope="col" class=" py-3">End Date</th>
+                                <th scope="col" class=" py-3">Status</th>
                                 <th scope="col" class="px-6 py-3">Action</th>
                             </tr>
                         </thead>
@@ -52,14 +52,11 @@
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                                     id="search_list">
 
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $film->title }}</th>
+                                    <th scope="row"><img src="{{ asset('storage/uploads/' . $film->tumbnail) }}" alt="Tumbnail Missing" class="h-16 w-auto"></th>
+                                    <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $film->title }}</th>
                                     <th class="px-6">{{ $film->duration }}</th>
                                     <th class="px-6">{{ $film->genre }}</th> {{-- Problematic dengan pengambilan data genre --}}
-                                    <th class="px-6">{{ $film->description }}</th>
-                                    <th><img src="{{ asset('storage/uploads/' . $film->tumbnail) }}"
-                                            alt="Tumbnail Missing" class="h-16 w-auto"></th>
+                                    <th class="px-6 hidden">{{ $film->description }}</th>
                                     <th>{{ $film->start_date }}</th>
                                     <th>{{ $film->end_date }}</th>
                                     <th>{{ $film->status }}</th>

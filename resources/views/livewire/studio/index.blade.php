@@ -48,9 +48,9 @@
                         <tr>
                             <th scope="col" class="px-6 py-3">Name</th>
                             <th scope="col" class="px-6 py-3">Class</th>
-                            <th scope="col" class="px-6 py-3">Status</th>
                             <th scope="col" class="px-6 py-3">Weekday Price</th>
                             <th scope="col" class="px-6 py-3">Weekend Price</th>
+                            <th scope="col" class="px-6 py-3">Status</th>
                             <th scope="col" class="px-6 py-3">Action</th>
                         </tr>
                     </thead>
@@ -65,17 +65,17 @@
                                     {{ $studio->class }}
                                 </th>
                                 <th class="px-6 py-4">
+                                    {{ $studio->price }}
+                                </th>
+                                <th class="px-6 py-4">
+                                    {{ $studio->weekend_price }}
+                                </th>
+                                <th class="px-6 py-4">
                                     @if ($studio->is_active == 1)
                                         Active
                                     @else
                                         Not Active
                                     @endif
-                                </th>
-                                <th class="px-6 py-4">
-                                    {{ $studio->price }}
-                                </th>
-                                <th class="px-6 py-4">
-                                    {{ $studio->weekend_price }}
                                 </th>
                                 <td>
                                     <div class="flex">
