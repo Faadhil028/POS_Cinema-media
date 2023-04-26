@@ -91,7 +91,7 @@
             </div>
             <div class="mt-4">
                 {{ $users->links('pagination::tailwind') }}
-        </div>
+            </div>
         </div>
     </div>
 </x-admin-layout>

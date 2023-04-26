@@ -85,4 +85,10 @@ class UserController extends Controller
 
         return to_route('admin.users.index');
     }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return back()->with('message', 'Permission deleted.');
+    }
 }
