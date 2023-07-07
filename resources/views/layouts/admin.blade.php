@@ -66,12 +66,12 @@
                             auth()->user()->can('read.transaction') ||
                             auth()->user()->can('read.studio'))
                         <h4
-                            class="px-4 py-1 mt-2 text-2xl font-semibold text-sky-500 focus:outline-none focus:shadow-outline">
+                            class="px-1 py-1 mt-2 text-2xl font-semibold text-sky-500 focus:outline-none focus:shadow-outline">
                             Dashboard</h4>
                     @endif
                     @if (auth()->user()->can('read.film'))
                         <a href="{{ route('admin.films.index') }}"
-                            class="block {{ request()->routeIs('admin.films.*') ? 'bg-gray-600' : '' }} flex items-center p-1 text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            class="block {{ request()->routeIs('admin.films.*') ? 'bg-gray-500 text-white' : 'text-gray-900' }} flex items-center p-1  rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -82,7 +82,7 @@
                     @endif
                     @if (auth()->user()->can('read.genre'))
                         <a href="{{ route('admin.genres.index') }}"
-                            class="block {{ request()->routeIs('admin.genres.*') ? 'bg-gray-600' : '' }} flex items-center p-1 text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            class="block {{ request()->routeIs('admin.genres.*') ? 'bg-gray-500 text-white' : 'text-gray-900' }} flex items-center p-1  rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -96,7 +96,7 @@
 
                     @if (auth()->user()->can('read.studio'))
                         <a href="{{ route('admin.studios.index') }}"
-                            class="block {{ request()->routeIs('admin.studios.*') ? 'bg-gray-600' : '' }} flex items-center p-1 text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            class="block {{ request()->routeIs('admin.studios.*') ? 'bg-gray-500 text-white' : 'text-gray-900' }} flex items-center p-1  rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -107,7 +107,7 @@
                     @endif
                     @if (auth()->user()->can('read.seat'))
                         <a href="{{ route('admin.seats.index') }}"
-                            class="block {{ request()->routeIs('admin.seats.*') ? 'bg-gray-600' : '' }} flex items-center p-1 text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            class="block {{ request()->routeIs('admin.seats.*') ? 'bg-gray-500 text-white' : 'text-gray-900' }} flex items-center p-1  rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -118,7 +118,7 @@
                     @endif
                     @if (auth()->user()->can('read.timetable'))
                         <a href="{{ route('admin.timetables.index') }}"
-                            class="block {{ request()->routeIs('admin.timetables.*') ? 'bg-gray-600' : '' }} flex items-center p-1 text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            class="block {{ request()->routeIs('admin.timetables.*') ? 'bg-gray-500 text-white' : 'text-gray-900' }} flex items-center p-1  rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -130,7 +130,7 @@
                     @endif
                     @if (auth()->user()->can('read.transaction'))
                         <a href="{{ route('admin.transaction.index') }}"
-                            class="block {{ request()->routeIs('admin.transaction.*') ? 'bg-gray-600' : '' }} flex items-center p-1 text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            class="block {{ request()->routeIs('admin.transaction.*') ? 'bg-gray-500 text-white' : 'text-gray-900' }} flex items-center p-1  rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -144,10 +144,10 @@
                 @role('admin')
                     <div class="mt-4">
                         <h4
-                            class="px-4 py-1 mt-2 text-2xl font-semibold text-sky-500 focus:outline-none focus:shadow-outline">
+                            class="px-1 py-1 mt-2 text-2xl font-semibold text-sky-500 focus:outline-none focus:shadow-outline">
                             Admin</h4>
                         <a href="{{ route('admin.users.index') }}"
-                            class="block {{ request()->routeIs('admin.users.*') ? 'bg-gray-600' : '' }} flex items-center p-1 text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            class="block {{ request()->routeIs('admin.users.*') ? 'bg-gray-500 text-white' : 'text-gray-900' }} flex items-center p-1  rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -158,7 +158,7 @@
                         </a>
 
                         <a href="{{ route('admin.roles.index') }}"
-                            class="block {{ request()->routeIs('admin.roles.*') ? 'bg-gray-600' : '' }} flex items-center p-1 text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            class="block {{ request()->routeIs('admin.roles.*') ? 'bg-gray-500 text-white' : 'text-gray-900' }} flex items-center p-1  rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -169,7 +169,7 @@
 
 
                         <a href="{{ route('admin.permissions.index') }}"
-                            class="block {{ request()->routeIs('admin.permissions.*') ? 'bg-gray-600' : '' }} flex items-center p-1 text-gray-900 rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                            class="block {{ request()->routeIs('admin.permissions.*') ? 'bg-gray-500 text-white' : 'text-gray-900' }} flex items-center p-1  rounded-lg dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
