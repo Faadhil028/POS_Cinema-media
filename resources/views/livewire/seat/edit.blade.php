@@ -16,14 +16,18 @@
         </div>
     @endif
     <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
-        <div class=" bg-white dark:bg-gray-900 flex justify-between rounded-lg mb-5">
+        <!-- <div class=" bg-white dark:bg-gray-900 flex justify-between rounded-lg mb-5">
             <div class="relative px-2 pt-2">
                 <div class="pt-4 px-4">
                     <h1 class="uppercase text-2xl font-semibold tracking-widest text-white ml-4 mb-5">Edit seat</h1>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-5">
+                <div class="py-1">
+                    <h1 class="uppercase text-3xl font-black tracking-widest text-gray-900">Edit seat</h1>
+                    <hr class="h-px my-4 bg-gray-500 border-0">
+                </div>
             <form wire:submit.prevent='update'>
 
                 <!-- Row -->

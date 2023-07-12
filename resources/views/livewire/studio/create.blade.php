@@ -20,7 +20,7 @@
                     <div class="mb-3">
                         <label class="dark:text-white text-base" for="class">Class</label><br>
                         <select id="class" wire:model.defer='class'
-                            class="block w-full rounded-md bg-gray-900 dark:text-gray-400 @error('class') is-invalid @enderror">
+                            class="block w-full rounded-md  text-gray-900 @error('class') is-invalid @enderror">
                             <option>Choose a Class</option>
                             <option value="REGULAR">REGULAR</option>
                             <option value="PREMIUM">PREMIUM</option>

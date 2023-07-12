@@ -1,12 +1,7 @@
 <x-admin-layout>
-    <div class="py-12 w-full">
+    <div class="py-8 w-full">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
-            <div class="ml-4">
-                <a href="{{ route('admin.users.index') }}"
-                    class="px-4 py-2 bg-sky-500 hover:bg-slate-200 text-slate-100 hover:text-gray-800 rounded-md">Index
-                    User</a>
-            </div>
-            <h1 class="uppercase text-2xl font-semibold tracking-widest text-white ml-4 mt-10">Update User</h1>
+            <h1 class="uppercase text-2xl font-semibold tracking-widest text-white ml-4 mt-10">Edit User</h1>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-5">
 
                 <form method="POST" action="{{ route('admin.users.update', $user) }}">

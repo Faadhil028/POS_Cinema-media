@@ -1,6 +1,6 @@
 <div class="py-12 w-full">
     <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
-        <h1 class="uppercase text-2xl font-semibold tracking-widest text-white ml-4 mt-10">add studio</h1>
+        <h1 class="uppercase text-2xl font-semibold tracking-widest text-white ml-4 mt-10">Edit studio</h1>
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
 
@@ -20,7 +20,7 @@
                     <div class="mb-3">
                         <label class="dark:text-white text-base" for="class">Class</label><br>
                         <select id="class" wire:model.defer='class'
-                            class="block w-full rounded-md bg-gray-900 dark:text-gray-400 @error('class') is-invalid @enderror">
+                            class="block w-full rounded-md  text-gray-900 @error('class') is-invalid @enderror">
                             <option>Choose a Class</option>
                             <option value="REGULAR">REGULAR</option>
                             <option value="PREMIUM">PREMIUM</option>

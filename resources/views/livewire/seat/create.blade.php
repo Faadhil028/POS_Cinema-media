@@ -16,14 +16,18 @@
         </div>
     @endif
     <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
-        <div class=" bg-white dark:bg-gray-900 flex justify-between rounded-lg mb-5">
+        <!-- <div class=" bg-white dark:bg-gray-900 flex justify-between rounded-lg mb-5">
             <div class="relative px-2 pt-2">
-                <div class="pt-4 px-4">
-                    <h1 class="uppercase text-2xl font-semibold tracking-widest text-white ml-4 mb-5">add seat</h1>
+                <div class="pt-4 px-2">
+                    <h1 class="uppercase text-3xl font-black tracking-widest text-gray-900 ml-4 mb-5">add seat</h1>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-5">
+                <div class="py-1">
+                    <h1 class="uppercase text-3xl font-black tracking-widest text-gray-900">add seat</h1>
+                    <hr class="h-px my-4 bg-gray-500 border-0">
+                </div>
             <form wire:submit.prevent='store'>
 
                 <!-- Row -->
@@ -41,7 +45,7 @@
                     <x-text-input id="number" class="block mt-1 w-full" type="number" name="number"
                         :value="old('number')" wire:model.defer='number' required />
                     <x-input-error :messages="$errors->get('number')" class="mt-2" />
-                    <small class="text-gray-300"><i>* masukkan jumlah banyak kursi yang diinginkan</i></small>
+                    <small class="text-gray-500"><i>* masukkan jumlah banyak kursi yang diinginkan</i></small>
                 </div>
 
 

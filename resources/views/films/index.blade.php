@@ -1,13 +1,13 @@
 <x-admin-layout>
     <div class="py-12 w-full">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
             <!-- @if (session()->has('message'))
 <div class="alert alert-success">
                         {{ session()->get('message') }}
                     </div>
 @endif -->
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg py-4">
+                <div class="relative overflow-x-auto  sm:rounded-lg">
                     <div class="pb-4 bg-white dark:bg-gray-900 flex justify-between">
                         <label for="table-search" class="sr-only">Search</label>
                         <div class="relative px-2 pt-2">
@@ -49,10 +49,10 @@
                         </thead>
                         <tbody>
                             @forelse ($films as $film)
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 pb-2"
                                     id="search_list">
 
-                                    <th scope="row"><img src="{{ asset('storage/uploads/' . $film->tumbnail) }}" alt="Tumbnail Missing" class="h-16 w-auto"></th>
+                                    <th scope="row"><img src="{{ asset('storage/uploads/' . $film->tumbnail) }}" alt="Tumbnail Missing" class="h-16 w-auto px-6"></th>
                                     <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $film->title }}</th>
                                     <th class="px-6">{{ $film->duration }}</th>
                                     <th class="px-6">{{ $film->genre }}</th> {{-- Problematic dengan pengambilan data genre --}}

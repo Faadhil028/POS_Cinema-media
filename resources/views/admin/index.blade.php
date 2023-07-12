@@ -43,5 +43,6 @@
 
                 <div class="clearfix"></div>
 
-
+</div>
+</div>
 </x-admin-layout>
