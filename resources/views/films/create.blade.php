@@ -53,7 +53,7 @@
                             <label class="dark:text-white text-base" for="description">Description</label><br>
                             <x-text-input type="textarea" id="description" name="description"
                                 value="{{ old('description') }}"
-                                class="block rounded-md bg-white border-gray-900 dark:bg-gray-900 dark:border-gray-600 border mt-1 w-full h-24 min-h-full @error('description') is-invalid @enderror"/>
+                                class="block rounded-md bg-white  dark:bg-gray-900 dark:border-gray-600 border mt-1 w-full h-24 min-h-full @error('description') is-invalid @enderror"/>
                             @error('description')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

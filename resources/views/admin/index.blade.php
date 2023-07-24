@@ -8,14 +8,14 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     <h1 class="text-3xl font-bold mb-4">Dashboard Bioskop</h1>
-                    <p class="mb-4 text-lg">Selamat datang di dashboard Bioskop SOC Movie. Di sini, Anda dapat mengelola
+                    <p class="mb-4 text-lg text-justify">Selamat datang di dashboard Admin Cinema Media. Di sini, Anda dapat mengelola
                         berbagai informasi terkait bioskop, termasuk jadwal film, penjualan tiket, dan pengelolaan
                         data
                         pelanggan.</p>
-                    <p class="mb-4 text-lg">Dashboard ini menyediakan fitur-fitur yang memudahkan Anda dalam mengatur
+                    <p class="mb-4 text-lg text-justify">Dashboard ini menyediakan fitur-fitur yang memudahkan Anda dalam mengatur
                         operasional bioskop. Anda dapat dengan mudah menambah, mengedit, atau menghapus jadwal film,
                         mengelola harga tiket, serta melihat laporan penjualan.</p>
-                    <p class="mb-4 text-lg">Kami berkomitmen untuk menyediakan pengalaman yang optimal bagi
+                    <p class="mb-4 text-lg text-justify">Kami berkomitmen untuk menyediakan pengalaman yang optimal bagi
                         pengelolaan
                         bioskop Anda melalui dashboard ini. Jika Anda memiliki pertanyaan atau masalah, jangan ragu
                         untuk

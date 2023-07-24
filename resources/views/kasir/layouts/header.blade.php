@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="p-2">
-                <h2><a class="navbar-brand" href="{{ route('pos.film') }}">SOC MOVIE</a></h2>
+                <h2><a class="navbar-brand" href="{{ route('pos.film') }}">CINEMA MEDIA</a></h2>
             </div>
         </div>
     </header>
